@@ -3,8 +3,9 @@
  */
 package com.myproject.service;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import java.util.List;
 
+import com.myproject.dto.DoctorDto;
 import com.myproject.dto.PrescriptionDto;
 import com.myproject.dto.ResponseDto;
 
@@ -14,5 +15,8 @@ import com.myproject.dto.ResponseDto;
  */
 public interface DoctorService {
 	public ResponseDto savePriscription(PrescriptionDto prescriptionDto);
+	public DoctorDto getDoctorById(String doctorId);
+	public List<DoctorDto> getDoctorsList(String department);
+	public ResponseDto createNewDoctorRecord(DoctorDto doctorDto);
 
 }
