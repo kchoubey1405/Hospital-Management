@@ -40,7 +40,7 @@ public class PatientController {
 	}
 
 	@GetMapping("/patientById")
-	public PatientDto getPatientById(String patientId) {
+	public PatientDto getPatientById(@RequestParam String patientId) {
 		return patientService.getPatientById(patientId);
 	}
 

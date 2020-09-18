@@ -7,12 +7,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import com.myproject.persistent.util.BaseDo;
 import com.sun.istack.NotNull;
 
 /**
@@ -22,7 +25,11 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "PATIENT_DETAILS")
-public class PatientDo extends BaseModel {
+public class PatientDo implements BaseDo {
+	@Id
+	@Column(name = "patient_id", length = 100)
+	private String patientid;
+
 	@Column(name = "PATIENT_NAME", length = 50)
 	private String patientName;
 
@@ -166,4 +173,17 @@ public class PatientDo extends BaseModel {
 		this.visitType = visitType;
 	}
 
+	public String getPatientid() {
+		return patientid;
+	}
+
+	public void setPatientid(String patientid) {
+		this.patientid = patientid;
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
