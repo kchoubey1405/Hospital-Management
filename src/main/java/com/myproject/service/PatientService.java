@@ -3,10 +3,10 @@
  */
 package com.myproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.myproject.dto.PatientDto;
-import com.myproject.dto.ResponseDto;
 
 /**
  * @author Kamlesh.Choubey
@@ -14,7 +14,7 @@ import com.myproject.dto.ResponseDto;
  */
 
 public interface PatientService {
-	ResponseDto registerNewPatient(PatientDto patientDto);
+	HashMap<String , String> registerNewPatient(PatientDto patientDto);
 	String getPatientNameById(String patientId);
 	PatientDto getPatientById(String patientId);
 	List<PatientDto> getAllPatientList(String patientId);

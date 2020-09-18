@@ -30,6 +30,11 @@ public class ResponseDto {
 	public void setResponseCode(String responseCode) {
 		this.responseCode = responseCode;
 	}
+	@Override
+	public String toString() {
+		return "ResponseDto [responseMessage=" + responseMessage + ", responseCode=" + responseCode + ", status="
+				+ status + "]";
+	}
 	
 	
 }
