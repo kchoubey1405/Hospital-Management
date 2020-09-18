@@ -35,7 +35,6 @@ public class PatientDao {
 	
 	public PatientDo importDto(PatientDto fromDto) {
 		PatientDo entity = new PatientDo();
-		entity.setPatientId(fromDto.getPatientId());
 		entity.setPatientName(fromDto.getPatientName());
 		entity.setGuardiansName(fromDto.getGuardiansName());
 		entity.setAge(fromDto.getAge());
@@ -55,7 +54,6 @@ public class PatientDao {
 
 	public PatientDto exportDto(PatientDo entity) {
 		PatientDto dto = new PatientDto();
-		dto.setPatientId(entity.getPatientId());
 		dto.setPatientName(entity.getPatientName());
 		dto.setGuardiansName(entity.getGuardiansName());
 		dto.setAge(entity.getAge());

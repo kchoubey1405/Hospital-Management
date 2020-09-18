@@ -12,9 +12,10 @@ import com.myproject.dto.ResponseDto;
  * @author Kamlesh.Choubey
  *
  */
+
 public interface PatientService {
-	public ResponseDto registerNewPatient(PatientDto patientDto);
-	public String getPatientNameById(String patientId);
-	public PatientDto getPatientById(String patientId);
-	public List<PatientDto> getAllPatientList(String patientId);
+	ResponseDto registerNewPatient(PatientDto patientDto);
+	String getPatientNameById(String patientId);
+	PatientDto getPatientById(String patientId);
+	List<PatientDto> getAllPatientList(String patientId);
 }

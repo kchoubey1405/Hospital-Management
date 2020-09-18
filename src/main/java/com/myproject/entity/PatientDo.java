@@ -12,6 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.sun.istack.NotNull;
+
 /**
  * @author Kamlesh.Choubey
  *
@@ -19,12 +22,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "PATIENT_DETAILS")
-public class PatientDo {
-
-	@Id
-	@Column(name = "PATIENT_ID")
-	private String patientId;
-
+public class PatientDo extends BaseModel {
 	@Column(name = "PATIENT_NAME", length = 50)
 	private String patientName;
 
@@ -63,18 +61,6 @@ public class PatientDo {
 
 	@Column(name = "VISIT_TYPE", length = 30)
 	private String visitType;
-
-	@Column(name = "CREATED_AT")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createdAt;
-
-	public String getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(String patientId) {
-		this.patientId = patientId;
-	}
 
 	public String getPatientName() {
 		return patientName;
@@ -180,11 +166,4 @@ public class PatientDo {
 		this.visitType = visitType;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
 }
