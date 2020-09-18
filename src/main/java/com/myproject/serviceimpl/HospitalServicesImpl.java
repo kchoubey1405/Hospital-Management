@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myproject.dao.AppointmentDao;
+import com.myproject.dao.BillDao;
 import com.myproject.dto.AppointmentDto;
 import com.myproject.dto.ResponseDto;
 import com.myproject.service.HospitalServices;
@@ -24,6 +25,9 @@ public class HospitalServicesImpl implements HospitalServices{
 	@Autowired
 	AppointmentDao appointmentDao;
 	
+	@Autowired
+	BillDao billDao;
+	
 	@Override
 	public ResponseDto createAppointment(AppointmentDto appointmentDto) {
 		ResponseDto responseDto = new ResponseDto();
@@ -31,6 +35,7 @@ public class HospitalServicesImpl implements HospitalServices{
 		responseDto.setResponseCode(ApplicationConstant.FAILURE_CODE);
 		responseDto.setStatus(ApplicationConstant.FAILURE);
 		System.err.println("inside service"+appointmentDto.toString());
+		billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID);
 		appointmentDao.saveOrUpdate(appointmentDto);
 		responseDto.setResponseMessage("Saved successfully");
 		responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);

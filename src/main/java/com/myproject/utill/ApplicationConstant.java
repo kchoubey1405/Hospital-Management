@@ -17,4 +17,6 @@ public interface ApplicationConstant {
 	
 	public final String MEDICINEBILL = "MEDICINEBILL";
 	public final String PAID = "PAID";
+	
+	public final String REGISTRATION="REGISTRATION";
 }
