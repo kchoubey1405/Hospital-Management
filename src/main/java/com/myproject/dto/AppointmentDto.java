@@ -4,6 +4,7 @@
 package com.myproject.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import com.myproject.persistent.util.BaseDto;
 
@@ -20,6 +21,8 @@ public class AppointmentDto extends BaseDto{
 	private BigDecimal height;
 	private BigDecimal weight;
 	private String Bp;
+	private Date createdAt;
+	
 
 	public String getAppointmentId() {
 		return appointmentId;
@@ -85,11 +88,21 @@ public class AppointmentDto extends BaseDto{
 		Bp = bp;
 	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	
+
 	@Override
 	public String toString() {
 		return "AppointmentDto [appointmentId=" + appointmentId + ", diseaseDesc=" + diseaseDesc + ", advise=" + advise
 				+ ", patientId=" + patientId + ", doctorId=" + doctorId + ", height=" + height + ", weight=" + weight
-				+ ", Bp=" + Bp + "]";
+				+ ", Bp=" + Bp + ", createdAt=" + createdAt + "]";
 	}
 
 	@Override

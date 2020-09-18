@@ -4,11 +4,17 @@
 package com.myproject.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.myproject.persistent.util.BaseDo;
 
@@ -22,6 +28,8 @@ import com.myproject.persistent.util.BaseDo;
 public class AppointmentDo implements BaseDo{
 
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "APPOINTMENT_ID", length = 100)
 	private String appointmentId;
 	@Column(name = "DISEASE_DESC", length = 250)
@@ -38,6 +46,9 @@ public class AppointmentDo implements BaseDo{
 	private BigDecimal weight;
 	@Column(name = "BP", length = 100)
 	private String Bp;
+	@Column(name = "CREATED_AT")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
 	public String getAppointmentId() {
 		return appointmentId;
 	}
@@ -85,6 +96,13 @@ public class AppointmentDo implements BaseDo{
 	}
 	public void setBp(String bp) {
 		Bp = bp;
+	}
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	@Override
 	public Object getPrimaryKey() {
