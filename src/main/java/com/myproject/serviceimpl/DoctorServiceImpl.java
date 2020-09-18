@@ -79,6 +79,11 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
+	public List<DoctorDto> getAllDoctorsList() {
+		return doctorDao.getAllDoctorsList();
+	}
+
+	@Override
 	public ResponseDto createNewDoctorRecord(DoctorDto doctorDto) {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setResponseMessage("Creation failed");
