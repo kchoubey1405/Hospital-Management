@@ -20,7 +20,7 @@ import com.myproject.utill.ApplicationConstant;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class BillDao extends BaseDao<BillDo, BillDto>{
+public class BillDao extends BaseDao<BillDo, BillDto> {
 	public BillDo importDto(BillDto fromDto) {
 		BillDo entity = new BillDo();
 		entity.setBillId(fromDto.getBillId());
@@ -38,11 +38,12 @@ public class BillDao extends BaseDao<BillDo, BillDto>{
 		dto.setCreatedAt(entity.getCreatedAt());
 		return dto;
 	}
-	
-	public String generateBill(String type , String status){
+
+	public String generateBill(String type, String status) {
 		BillDto billDto = new BillDto();
 		Date createdAt = new Date();
-		billDto.setBillId(String.valueOf(createdAt.getTime()));
+		String id = String.valueOf(createdAt.getTime());
+		billDto.setBillId(id);
 		billDto.setCreatedAt(createdAt);
 		billDto.setStatus(ApplicationConstant.MEDICINEBILL);
 		billDto.setStatus(ApplicationConstant.PAID);

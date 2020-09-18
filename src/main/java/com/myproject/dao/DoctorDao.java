@@ -62,13 +62,6 @@ public class DoctorDao extends BaseDao<DoctorDo, DoctorDto> {
 	}
 
 	public DoctorDto getDoctorById(String doctorId) {
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<DoctorDo> criteria = builder.createQuery(DoctorDo.class);
-		Root<DoctorDo> d = criteria.from(DoctorDo.class);
-		criteria.where(builder.equal(d.get("doctorId"), doctorId));
-		TypedQuery<DoctorDo> q = entityManager.createQuery(criteria);
-		DoctorDo doctorDo = q.getSingleResult();
-		System.err.println(doctorDo.toString());
 		return exportDto(entityManager.find(DoctorDo.class, doctorId));
 	}
 

@@ -3,20 +3,15 @@
  */
 package com.myproject.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
+import org.hibernate.annotations.GenericGenerator;
+
 import com.myproject.persistent.util.BaseDo;
-import com.sun.istack.NotNull;
 
 /**
  * @author Kamlesh.Choubey
@@ -27,6 +22,8 @@ import com.sun.istack.NotNull;
 @Table(name = "PATIENT_DETAILS")
 public class PatientDo implements BaseDo {
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "patient_id", length = 100)
 	private String patientid;
 

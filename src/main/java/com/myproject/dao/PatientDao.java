@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.myproject.dto.PatientDto;
-import com.myproject.entity.PatientDo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -19,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.myproject.dto.PatientDto;
+import com.myproject.entity.PatientDo;
 
 /**
  * @author Kamlesh.Choubey
@@ -85,11 +86,13 @@ public class PatientDao {
         this.getSession().saveOrUpdate(importDto(patientDto));
     }
 
-    public PatientDto getPatientById(String patientId) {
+    @SuppressWarnings("deprecation")
+	public PatientDto getPatientById(String patientId) {
         return exportDto((PatientDo) this.getSession().createCriteria(PatientDo.class).add(Restrictions.eq("patient_id", patientId)).uniqueResult());
     }
 
-    public List<PatientDto> getAllPatientList(String patientId) {
+    @SuppressWarnings({ "unchecked", "deprecation" })
+	public List<PatientDto> getAllPatientList(String patientId) {
         return exportDtoList(this.getSession().createCriteria(PatientDo.class).list());
     }
 
