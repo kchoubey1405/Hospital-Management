@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.dto.AppointmentDto;
+import com.myproject.dto.BillResponseDto;
 import com.myproject.dto.ResponseDto;
+import com.myproject.service.BillingService;
 import com.myproject.service.HospitalServices;
-
 
 /**
  * @author Kamlesh.Choubey
@@ -28,6 +29,8 @@ public class HMController {
 
 	@Autowired
 	HospitalServices hospitalServices;
+	@Autowired
+	BillingService billingService;
 
 	@PostMapping("/createNewAppointment")
 	public ResponseDto createAppointment(@RequestBody AppointmentDto appointmentDto) {
@@ -35,14 +38,21 @@ public class HMController {
 	}
 
 	@GetMapping("/getAppointmentDetailById")
-	public AppointmentDto getAppointmentDetailById(@RequestParam(value="appointmentId") String appointmentId) {
+	public AppointmentDto getAppointmentDetailById(@RequestParam(value = "appointmentId") String appointmentId) {
 		return hospitalServices.getAppointmentDetailById(appointmentId);
 	}
 
 	@GetMapping("/getAppointmentList")
 	public List<AppointmentDto> getAppointmentList(@RequestParam(value = "doctorId") String doctorId,
-			@RequestParam(value = "numberOfDays") int numberOfDays, @RequestParam(value="startIndex") int startIndex, @RequestParam(value="pazeSize") int pazeSize) {
+			@RequestParam(value = "numberOfDays") int numberOfDays, @RequestParam(value = "startIndex") int startIndex,
+			@RequestParam(value = "pazeSize") int pazeSize) {
 		return hospitalServices.getAppointmentList(doctorId, numberOfDays, startIndex, pazeSize);
+	}
+
+	@GetMapping("/fetchBillDtails")
+	public BillResponseDto fetchBillDtails(@RequestParam(value="patientId") String patientId, @RequestParam(value="billId") String billId) {
+
+		return billingService.fetchBillDtails(patientId, billId);
 	}
 
 }

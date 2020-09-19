@@ -39,6 +39,7 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 		entity.setPatientId(fromDto.getPatientId());
 		entity.setWeight(fromDto.getWeight());
 		entity.setCreatedAt(new Date());
+		entity.setAppointmentDate(fromDto.getAppointmentDate());
 		return entity;
 	}
 
@@ -53,6 +54,7 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 		dto.setPatientId(entity.getPatientId());
 		dto.setWeight(entity.getWeight());
 		dto.setCreatedAt(entity.getCreatedAt());
+		dto.setAppointmentDate(entity.getAppointmentDate());
 		return dto;
 	}
 

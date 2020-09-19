@@ -3,6 +3,8 @@
  */
 package com.myproject.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +24,8 @@ import com.myproject.persistent.util.BaseDo;
 @Table(name = "PATIENT_DETAILS")
 public class PatientDo implements BaseDo {
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "patient_id", length = 100)
-	private String patientid;
+	private String patientid = UUID.randomUUID().toString().replace("-", "");
 
 	@Column(name = "PATIENT_NAME", length = 50)
 	private String patientName;

@@ -35,7 +35,7 @@ public class HospitalServicesImpl implements HospitalServices{
 		responseDto.setResponseCode(ApplicationConstant.FAILURE_CODE);
 		responseDto.setStatus(ApplicationConstant.FAILURE);
 		System.err.println("inside service"+appointmentDto.toString());
-		billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID);
+		billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID, appointmentDto.getPatientId());
 		appointmentDao.saveOrUpdate(appointmentDto);
 		responseDto.setResponseMessage("Saved successfully");
 		responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);

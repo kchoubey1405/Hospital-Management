@@ -16,6 +16,7 @@ public class BillDto extends BaseDto{
 	private String type;
 	private String status;
 	private Date createdAt;
+	private String patientId;
 	public String getBillId() {
 		return billId;
 	}
@@ -39,6 +40,13 @@ public class BillDto extends BaseDto{
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	public String getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
 	}
 	@Override
 	public Boolean getValidForUsage() {

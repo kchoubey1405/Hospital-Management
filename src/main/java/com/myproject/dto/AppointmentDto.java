@@ -22,6 +22,7 @@ public class AppointmentDto extends BaseDto{
 	private BigDecimal weight;
 	private String Bp;
 	private Date createdAt;
+	private Date appointmentDate;
 	
 
 	public String getAppointmentId() {
@@ -96,13 +97,20 @@ public class AppointmentDto extends BaseDto{
 		this.createdAt = createdAt;
 	}
 
-	
+	public Date getAppointmentDate() {
+		return appointmentDate;
+	}
 
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "AppointmentDto [appointmentId=" + appointmentId + ", diseaseDesc=" + diseaseDesc + ", advise=" + advise
 				+ ", patientId=" + patientId + ", doctorId=" + doctorId + ", height=" + height + ", weight=" + weight
-				+ ", Bp=" + Bp + ", createdAt=" + createdAt + "]";
+				+ ", Bp=" + Bp + ", createdAt=" + createdAt + ", appointmentDate=" + appointmentDate + "]";
 	}
 
 	@Override
