@@ -38,6 +38,8 @@ public class AppointmentDo implements BaseDo{
 	private String advise;
 	@Column(name = "PATIENT_ID", length = 100)
 	private String patientId;
+	@Column(name = "PATIENT_NAME", length = 100)
+	private String patientName;
 	@Column(name = "DOCTOR_ID", length = 100)
 	private String doctorId;
 	@Column(name = "HEIGHT")
@@ -113,6 +115,13 @@ public class AppointmentDo implements BaseDo{
 	}
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
+	}
+	
+	public String getPatientName() {
+		return patientName;
+	}
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
 	}
 	@Override
 	public Object getPrimaryKey() {
