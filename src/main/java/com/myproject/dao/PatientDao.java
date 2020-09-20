@@ -94,7 +94,7 @@ public class PatientDao {
 
     @SuppressWarnings("deprecation")
 	public PatientDto getPatientById(String patientId) {
-        return exportDto((PatientDo) this.getSession().createCriteria(PatientDo.class).add(Restrictions.eq("patient_id", patientId)).uniqueResult());
+        return exportDto((PatientDo) this.getSession().createCriteria(PatientDo.class).add(Restrictions.eq("patientid", patientId)).uniqueResult());
     }
 
     @SuppressWarnings({ "unchecked", "deprecation" })
