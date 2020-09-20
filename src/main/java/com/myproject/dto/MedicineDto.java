@@ -1,7 +1,5 @@
 package com.myproject.dto;
 
-import javax.persistence.Column;
-
 public class MedicineDto {
 
     private String medicineName;

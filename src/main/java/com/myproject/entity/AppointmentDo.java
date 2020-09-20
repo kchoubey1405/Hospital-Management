@@ -49,6 +49,9 @@ public class AppointmentDo implements BaseDo{
 	@Column(name = "CREATED_AT")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
+	@Column(name = "APPOINTMENT_DATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date appointmentDate;
 	public String getAppointmentId() {
 		return appointmentId;
 	}
@@ -103,6 +106,13 @@ public class AppointmentDo implements BaseDo{
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	public Date getAppointmentDate() {
+		return appointmentDate;
+	}
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
 	}
 	@Override
 	public Object getPrimaryKey() {

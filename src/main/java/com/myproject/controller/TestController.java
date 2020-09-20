@@ -24,7 +24,7 @@ import com.myproject.service.TestService;
 @RestController
 @RequestMapping("/test")
 public class TestController {
- 
+  
 	@Autowired
 	TestService testService;
 

@@ -30,16 +30,17 @@ public class PatientServiceImpl implements PatientService {
 		responseDto.setResponseCode(ApplicationConstant.FAILURE_CODE);
 		responseDto.setStatus(ApplicationConstant.FAILURE);
 		try{
-			String billId = billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID);
+			String patientId = patientDao.registerNewPatient(patientDto);
+			response.put("patientId", patientId);
+			String billId = billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID,patientId);
 			response.put("recieptId", billId);
-			patientDao.registerNewPatient(patientDto);
 			responseDto.setResponseMessage("Saved or updated successfully");
 			responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);
 			responseDto.setStatus(ApplicationConstant.SUCCESS);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		response.put("responseMessage", response.toString());
+		response.put("responseMessage", responseDto.toString());
 		return response;
 	}
 

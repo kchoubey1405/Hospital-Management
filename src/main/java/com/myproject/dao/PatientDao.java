@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.dto.PatientDto;
 import com.myproject.entity.PatientDo;
+import com.myproject.utill.ServicesUtil;
 
 /**
  * @author Kamlesh.Choubey
@@ -48,7 +49,10 @@ public class PatientDao {
         entity.setReferedTo(fromDto.getReferedTo());
         entity.setDiseaseDesc(fromDto.getDiseaseDesc());
         entity.setVisitType(fromDto.getVisitType());
-        entity.setPatientid(fromDto.getPatientId());
+        if(!ServicesUtil.isEmpty(fromDto.getPatientId())){
+        	 entity.setPatientid(fromDto.getPatientId());
+        }
+       
         return entity;
     }
 
@@ -82,8 +86,10 @@ public class PatientDao {
         return query.uniqueResult().toString();
     }
 
-    public void registerNewPatient(PatientDto patientDto) {
-        this.getSession().saveOrUpdate(importDto(patientDto));
+    public String registerNewPatient(PatientDto patientDto) {
+    	PatientDo patientDo = importDto(patientDto);
+        this.getSession().saveOrUpdate(patientDo);
+        return patientDo.getPatientid();
     }
 
     @SuppressWarnings("deprecation")

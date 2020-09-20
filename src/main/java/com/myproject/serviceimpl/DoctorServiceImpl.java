@@ -53,13 +53,13 @@ public class DoctorServiceImpl implements DoctorService {
 		appointmentDao.createOrUpdate(appointmentDto);
 		List<PrescribedMedsDto> prescribedMedsDtoList = prescriptionDto.getPrescribedMedsDtoList();
 		prescribedMedsDtoList.stream().forEach(p -> {
-		p.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID));
-		prescribedMedsDao.create(p);
+		p.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID ,appointmentDto.getPatientId()));
+		prescribedMedsDao.createOrUpdate(p);
 		});
 		List<PrescribedTestingDto> prescribedTestingDtoList = prescriptionDto.getPrescribedTestingDtoList();
 		prescribedTestingDtoList.stream().forEach(d -> {
-			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID));
-			prescribedTestingDao.create(d);
+			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID,appointmentDto.getPatientId()));
+			prescribedTestingDao.createOrUpdate(d);
 			});
 		responseDto.setResponseMessage("Saved successfully");
 		responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);
