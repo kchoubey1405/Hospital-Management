@@ -17,6 +17,7 @@ public class AppointmentDto extends BaseDto{
 	private String diseaseDesc;
 	private String advise;
 	private String patientId;
+	private String patientName;
 	private String doctorId;
 	private BigDecimal height;
 	private BigDecimal weight;
@@ -105,12 +106,12 @@ public class AppointmentDto extends BaseDto{
 		this.appointmentDate = appointmentDate;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "AppointmentDto [appointmentId=" + appointmentId + ", diseaseDesc=" + diseaseDesc + ", advise=" + advise
-				+ ", patientId=" + patientId + ", doctorId=" + doctorId + ", height=" + height + ", weight=" + weight
-				+ ", Bp=" + Bp + ", createdAt=" + createdAt + ", appointmentDate=" + appointmentDate + "]";
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
 	}
 
 	@Override
