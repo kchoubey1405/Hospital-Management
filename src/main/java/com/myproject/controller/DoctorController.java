@@ -21,8 +21,8 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
 
-    @PostMapping("/savePriscription")
-    public ResponseDto savePriscription(@RequestBody PrescriptionDto prescriptionDto) {
+    @PostMapping("/savePrescription")
+    public ResponseDto savePrescription(@RequestBody PrescriptionDto prescriptionDto) {
         return doctorService.savePriscription(prescriptionDto);
     }
 
