@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import com.myproject.dto.BillDetailsDto;
 import com.myproject.dto.BillingDto;
 import com.myproject.entity.BillDetailsDo;
 import com.myproject.entity.BillMap;
+import com.myproject.utill.ServicesUtil;
 
 /**
  * @author Kamlesh.Choubey
@@ -104,9 +109,18 @@ public class BillingDao {
 	}
 	
 
-//	public BillingDto fetchBillDtails(String patientId, String billId) {
-//		
-//	}
+	public BillingDto fetchBillDtails(String patientId, String billId) {
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<BillMap> criteria = builder.createQuery(BillMap.class);
+		Root<BillMap> d = criteria.from(BillMap.class);
+		if(!ServicesUtil.isEmpty(patientId)){
+			criteria.where(builder.equal(d.get("patientId"), patientId));
+		}else if(!ServicesUtil.isEmpty(billId)){
+			criteria.where(builder.equal(d.get("billId"), billId));
+		}
+		TypedQuery<BillMap> q = entityManager.createQuery(criteria);
+		return exportDto(q.getSingleResult());
+	}
 
 
 }

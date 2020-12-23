@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.dto.AppointmentDto;
-import com.myproject.dto.BillResponseDto;
 import com.myproject.dto.BillingDto;
 import com.myproject.dto.ResponseDto;
 import com.myproject.service.BillingService;
@@ -51,9 +50,8 @@ public class HMController {
 	}
 
 	@GetMapping("/fetchBillDtails")
-	public BillResponseDto fetchBillDtails(@RequestParam(value="patientId") String patientId, @RequestParam(value="billId") String billId) {
-
-		return billingService.fetchBillDtails(patientId, billId);
+	public BillingDto fetchBillDtails(@RequestParam(value="patientId") String patientId, @RequestParam(value="billId") String billId) {
+		return hospitalServices.fetchBillDtails(patientId, billId);
 	}
 	
 	@PostMapping("/generateBill")
