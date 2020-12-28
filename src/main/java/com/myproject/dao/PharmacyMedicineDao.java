@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.myproject.dto.SupplierDto;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -92,7 +93,7 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		}
 		return resonse;
 	}
-	
+
 	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
 		String resonse="failure";
 		try{
