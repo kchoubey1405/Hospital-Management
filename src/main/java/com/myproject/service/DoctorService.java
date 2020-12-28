@@ -17,6 +17,7 @@ public interface DoctorService {
 	public ResponseDto savePriscription(PrescriptionDto prescriptionDto);
 	public DoctorDto getDoctorById(String doctorId);
 	public List<DoctorDto> getDoctorsList(String department);
+	public List<DoctorDto> getAllDoctorsList();
 	public ResponseDto createNewDoctorRecord(DoctorDto doctorDto);
 
 }

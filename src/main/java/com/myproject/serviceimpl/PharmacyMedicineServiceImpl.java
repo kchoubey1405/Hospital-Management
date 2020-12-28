@@ -5,6 +5,8 @@ package com.myproject.serviceimpl;
 
 import java.util.List;
 
+import com.myproject.dao.SupplierDao;
+import com.myproject.dto.SupplierDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,24 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 
 	@Autowired
 	PharmacyMedicineDao pharmacyMedicineDao;
+
+	@Autowired
+	SupplierDao supplierDao;
 	@Override
 	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
 		return pharmacyMedicineDao.saveOrUpdateMedicine(dto);
 	}
+
+	@Override
+	public String saveOrUpdateSupplier(SupplierDto dto) {
+		return supplierDao.saveorUpdateSupplier(dto);
+	}
+
+	@Override
+	public List<SupplierDto> getSupplierList() {
+		return supplierDao.getSupplierList();
+	}
+
 	@Override
 	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
 		return pharmacyMedicineDao.deleteMedicineRecord(dto);

@@ -5,6 +5,7 @@ package com.myproject.controller;
 
 import java.util.List;
 
+import com.myproject.dto.SupplierDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,17 @@ public class PharmacyController {
 	@GetMapping("/getMedicineList")
 	public List<PharmacyMedicineDto> getMedicineList(){
 		return pharmacyMedicineService.getMedicineList();
+	}
+
+
+	@PostMapping("/saveSupplier")
+	public String saveOrUpdateSupplier(@RequestBody SupplierDto dto) {
+		return pharmacyMedicineService.saveOrUpdateSupplier(dto);
+	}
+
+	@GetMapping("/getSupplierList")
+	public List<SupplierDto> getSuppliersList(){
+		return pharmacyMedicineService.getSupplierList();
 	}
 
 }

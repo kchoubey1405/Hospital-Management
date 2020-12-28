@@ -74,6 +74,15 @@ public class DoctorDao extends BaseDao<DoctorDo, DoctorDto> {
 		return exportDtoList(q.getResultList());
 	}
 
+	public List<DoctorDto> getAllDoctorsList() {
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<DoctorDo> query = builder.createQuery(DoctorDo.class);
+		Root<DoctorDo> variableRoot = query.from(DoctorDo.class);
+		query.select(variableRoot);
+		TypedQuery<DoctorDo> q = entityManager.createQuery(query);
+		return exportDtoList(q.getResultList());
+	}
+
 	public void saveOrUpdate(DoctorDto doctorDto) {
 		this.getSession().saveOrUpdate(importDto(doctorDto));
 	}

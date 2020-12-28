@@ -35,7 +35,7 @@ public class PharmacyMedicineDo implements BaseDo {
 	private String medicineName;
 	@Column(name="GENERIC_NAME" , length=100)
 	private String genericName;
-	@Column(name="BOPX_SIZE")
+	@Column(name="BOX_SIZE")
 	private Integer boxSize;
 	@Column(name="EXPIRY_DATE")
 	@Temporal(TemporalType.TIMESTAMP)

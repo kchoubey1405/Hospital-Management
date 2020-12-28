@@ -102,7 +102,7 @@ public class AppointmentDo implements BaseDo{
 	public void setBp(String bp) {
 		Bp = bp;
 	}
-	
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
