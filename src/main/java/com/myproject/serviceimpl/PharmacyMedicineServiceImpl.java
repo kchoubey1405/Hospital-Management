@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myproject.dao.PharmacyMedicineDao;
+import com.myproject.dao.PurchaseOrderDao;
 import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.dto.PurchaseOrderDto;
 import com.myproject.service.PharmacyMedicineService;
 
 /**
@@ -26,6 +28,10 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 
 	@Autowired
 	SupplierDao supplierDao;
+	
+	@Autowired
+	PurchaseOrderDao purchaseOrderDao;
+	
 	@Override
 	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
 		return pharmacyMedicineDao.saveOrUpdateMedicine(dto);
@@ -52,6 +58,26 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 	@Override
 	public List<PharmacyMedicineDto> getMedicineList() {
 		return pharmacyMedicineDao.getMedicineList();
+	}
+
+	@Override
+	public String saveOrUpdatePurchaseOrder(PurchaseOrderDto dto) {
+		return purchaseOrderDao.saveOrUpdatePurchaseOrder(dto);
+	}
+
+	@Override
+	public String deletePurchaseOrder(PurchaseOrderDto dto) {
+		return purchaseOrderDao.deletePurchaseOrder(dto);
+	}
+
+	@Override
+	public PurchaseOrderDto getPurchaseOrderDetails(Integer purchaseOrderId) {
+		return purchaseOrderDao.getPurchaseOrderDetails(purchaseOrderId);
+	}
+
+	@Override
+	public List<PurchaseOrderDto> getPurchaseOrderList() {
+		return purchaseOrderDao.getPurchaseOrderList();
 	}
 
 }

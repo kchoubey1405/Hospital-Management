@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.dto.PurchaseOrderDto;
 import com.myproject.service.PharmacyMedicineService;
 
 /**
@@ -59,6 +60,26 @@ public class PharmacyController {
 	@GetMapping("/getSupplierList")
 	public List<SupplierDto> getSuppliersList(){
 		return pharmacyMedicineService.getSupplierList();
+	}
+	
+	@PostMapping("/saveOrUpdatePurchaseOrder")
+	public String saveOrUpdatePurchaseOrder(@RequestBody PurchaseOrderDto dto) {
+		return pharmacyMedicineService.saveOrUpdatePurchaseOrder(dto);
+	}
+
+	@DeleteMapping("/deletePurchaseOrder")
+	public String deletePurchaseOrder(@RequestBody PurchaseOrderDto dto) {
+		return pharmacyMedicineService.deletePurchaseOrder(dto);
+	}
+
+	@GetMapping("/getPurchaseOrderDetails")
+	public PurchaseOrderDto getPurchaseOrderDetails(@RequestParam(value="purchaseOrderId") Integer purchaseOrderId) {
+		return pharmacyMedicineService.getPurchaseOrderDetails(purchaseOrderId);
+	}
+
+	@GetMapping("/getPurchaseOrderList")
+	public List<PurchaseOrderDto> getPurchaseOrderList() {
+		return pharmacyMedicineService.getPurchaseOrderList();
 	}
 
 }
