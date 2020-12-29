@@ -26,6 +26,7 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 
 	@Autowired
 	SupplierDao supplierDao;
+
 	@Override
 	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
 		return pharmacyMedicineDao.saveOrUpdateMedicine(dto);
@@ -45,6 +46,7 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
 		return pharmacyMedicineDao.deleteMedicineRecord(dto);
 	}
+
 	@Override
 	public PharmacyMedicineDto getMedicineDetails(Integer medicineId) {
 		return pharmacyMedicineDao.getMedicineDetails(medicineId);

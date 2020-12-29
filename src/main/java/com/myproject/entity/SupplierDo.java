@@ -31,6 +31,11 @@ public class SupplierDo implements BaseDo {
     private String address;
 
     @Override
+    public String toString() {
+        return "PharmacyMedicineDo [medicineId=" + supplierId + ", medicineName=" + supplierName + "]";
+    }
+
+    @Override
     public Object getPrimaryKey() {
         return null;
     }
