@@ -8,16 +8,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.myproject.dto.PharmacyMedicineDto;
-import com.myproject.dto.SupplierDto;
-import com.myproject.entity.PharmacyMedicineDo;
-import com.myproject.entity.SupplierDo;
-import com.myproject.persistent.util.BaseDao;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.myproject.dto.SupplierDto;
+import com.myproject.entity.SupplierDo;
+import com.myproject.persistent.util.BaseDao;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRES_NEW)
