@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,7 +41,9 @@ public class PurchaseOrderDo implements BaseDo {
 	@Column(name="ROL")
 	private Boolean rol;
 	
-	@OneToMany(targetEntity=PurchaseOrderDetailsDo.class , mappedBy="purchaseOrderId" ,cascade=CascadeType.ALL) 
+//	@OneToMany(targetEntity=PurchaseOrderDetailsDo.class , mappedBy="purchaseOrderId" ,cascade=CascadeType.ALL) 
+	@OneToMany(cascade = CascadeType.ALL)  
+	@JoinColumn(name="PURCHASE_ORDER_ID") 
 	private List<PurchaseOrderDetailsDo> productDetails;
 	public Date getOrderDate() {
 		return orderDate;
@@ -90,5 +93,6 @@ public class PurchaseOrderDo implements BaseDo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 }

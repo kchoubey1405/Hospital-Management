@@ -5,13 +5,15 @@ package com.myproject.dto;
 
 import java.math.BigDecimal;
 
+import com.myproject.entity.PurchaseOrderDo;
+
 /**
  * @author Kamlesh.Choubey
  *
  */
 public class PurchaseOrderDetailsDto {
 	private Integer productId;
-	private Integer purchaseOrderId;
+//	private Integer purchaseOrderId;
 	private Integer medicineId;
 	private String productName;
 	private String batchNumber;
@@ -20,6 +22,7 @@ public class PurchaseOrderDetailsDto {
 	private BigDecimal purchaseCost;
 	private BigDecimal discount;
 	private BigDecimal tax;
+	private PurchaseOrderDo purchaseOrderDo;
 	public String getProductName() {
 		return productName;
 	}
@@ -68,17 +71,24 @@ public class PurchaseOrderDetailsDto {
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
-	public Integer getPurchaseOrderId() {
-		return purchaseOrderId;
-	}
-	public void setPurchaseOrderId(Integer purchaseOrderId) {
-		this.purchaseOrderId = purchaseOrderId;
-	}
+//	public Integer getPurchaseOrderId() {
+//		return purchaseOrderId;
+//	}
+//	public void setPurchaseOrderId(Integer purchaseOrderId) {
+//		this.purchaseOrderId = purchaseOrderId;
+//	}
 	public Integer getMedicineId() {
 		return medicineId;
 	}
 	public void setMedicineId(Integer medicineId) {
 		this.medicineId = medicineId;
 	}
+	public PurchaseOrderDo getPurchaseOrderDo() {
+		return purchaseOrderDo;
+	}
+	public void setPurchaseOrderDo(PurchaseOrderDo purchaseOrderDo) {
+		this.purchaseOrderDo = purchaseOrderDo;
+	}
+	
 	
 }
