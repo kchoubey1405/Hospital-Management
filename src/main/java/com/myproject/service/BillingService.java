@@ -3,6 +3,8 @@
  */
 package com.myproject.service;
 
+import java.util.HashMap;
+
 import com.myproject.dto.BillResponseDto;
 import com.myproject.dto.BillingDto;
 
@@ -13,5 +15,5 @@ import com.myproject.dto.BillingDto;
 public interface BillingService {
 
 	BillResponseDto fetchBillDtails(String patientId, String billId);
-	public String generateBill(BillingDto billingDto) ;
+	public HashMap<String , Object> generateBill(BillingDto billingDto) ;
 }

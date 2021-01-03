@@ -3,6 +3,8 @@
  */
 package com.myproject.serviceimpl;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +34,7 @@ public class BillingServiceImpl implements BillingService{
 	}
 	
 	@Override
-	public String generateBill(BillingDto billingDto) {
+	public HashMap<String , Object> generateBill(BillingDto billingDto) {
 		return billingDao.generateBill(billingDto);
 	}
 

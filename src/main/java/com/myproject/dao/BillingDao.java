@@ -5,6 +5,7 @@ package com.myproject.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -96,16 +97,21 @@ public class BillingDao {
 		return dto;
 	}
 
-	public String generateBill(BillingDto billingDto) {
+	public HashMap<String , Object> generateBill(BillingDto billingDto) {
 		String response = "failed";
+		Integer billId= 0;
+		HashMap<String , Object> hm= new HashMap<>();
 		try {
 			BillMap billMap = importDto(billingDto);
 			getSession().saveOrUpdate(billMap);
-			response = "Bill " + billMap.getBillId() + " generated successfully";
+			response = "success";
+			billId=billMap.getBillId();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return response;
+		hm.put("response", response);
+		hm.put("billId", billId);
+		return hm;
 	}
 	
 
