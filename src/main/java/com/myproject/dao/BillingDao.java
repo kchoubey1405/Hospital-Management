@@ -43,7 +43,7 @@ public class BillingDao {
 	public BillMap importDto(BillingDto fromDto) {
 		BillMap entity = new BillMap();
 		entity.setBillId(fromDto.getBillId());
-		entity.setBillType(fromDto.getBillId());
+		entity.setBillType(fromDto.getBillType());
 		entity.setBillType(fromDto.getBillType());
 		entity.setPaymentMode(fromDto.getPaymentMode());
 		entity.setPaymentStatus(fromDto.getPaymentStatus());
@@ -71,7 +71,7 @@ public class BillingDao {
 	public BillingDto exportDto(BillMap entity) {
 		BillingDto dto = new BillingDto();
 		dto.setBillId(entity.getBillId());
-		dto.setBillType(entity.getBillId());
+		dto.setBillType(entity.getBillType());
 		dto.setBillType(entity.getBillType());
 		dto.setPaymentMode(entity.getPaymentMode());
 		dto.setPaymentStatus(entity.getPaymentStatus());

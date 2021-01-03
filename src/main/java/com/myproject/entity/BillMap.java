@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,7 +28,8 @@ public class BillMap {
 	
 	@Id
 	@Column(name="BILL_ID" , length=50)
-	private String billId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer billId;
 	
 	@Column(name="BILL_TYPE" , length=30)
 	private String billType;
@@ -50,11 +53,12 @@ public class BillMap {
 	@OneToMany(targetEntity=BillDetailsDo.class , mappedBy="billMapId" ,cascade=CascadeType.ALL) 
 	private List<BillDetailsDo> billDetailList;
 
-	public String getBillId() {
+	
+	public Integer getBillId() {
 		return billId;
 	}
 
-	public void setBillId(String billId) {
+	public void setBillId(Integer billId) {
 		this.billId = billId;
 	}
 
