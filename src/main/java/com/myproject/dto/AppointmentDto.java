@@ -24,7 +24,16 @@ public class AppointmentDto extends BaseDto{
 	private String Bp;
 	private Date createdAt;
 	private Date appointmentDate;
+	private String timeSlot;
 	
+
+	public String getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(String timeSlot) {
+		this.timeSlot = timeSlot;
+	}
 
 	public String getAppointmentId() {
 		return appointmentId;

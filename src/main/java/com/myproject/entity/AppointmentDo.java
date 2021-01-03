@@ -54,6 +54,16 @@ public class AppointmentDo implements BaseDo{
 	@Column(name = "APPOINTMENT_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date appointmentDate;
+	
+	@Column(name="TIME_SLOT", length=20)
+	private String timeSlot;
+	
+	public String getTimeSlot() {
+		return timeSlot;
+	}
+	public void setTimeSlot(String timeSlot) {
+		this.timeSlot = timeSlot;
+	}
 	public String getAppointmentId() {
 		return appointmentId;
 	}
