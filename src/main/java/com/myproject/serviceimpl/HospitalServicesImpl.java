@@ -3,6 +3,7 @@
  */
 package com.myproject.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class HospitalServicesImpl implements HospitalServices{
 	}
 
 	@Override
-	public String generateBill(BillingDto billingDto) {
+	public HashMap<String , Object> generateBill(BillingDto billingDto) {
 		return billingDao.generateBill(billingDto);
 	}
 

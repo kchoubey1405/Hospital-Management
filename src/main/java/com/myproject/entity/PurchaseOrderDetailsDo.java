@@ -3,6 +3,7 @@
  */
 package com.myproject.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,13 +22,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PURCHASE_ORDER_DETAILS")
-public class PurchaseOrderDetailsDo {
+public class PurchaseOrderDetailsDo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="PRODUCT_ID")
 	private Integer productId;
-	@Column(name="PURCHASE_ORDER_ID")
-	private Integer purchaseOrderId;
+//	@Column(name="PURCHASE_ORDER_ID")
+//	private Integer purchaseOrderId;
+//	@ManyToOne
+//	@JoinColumn(name="PURCHASE_ORDER_ID", nullable=true, updatable=true, referencedColumnName="PURCHASE_ORDER_ID")
+//	private PurchaseOrderDo purchaseOrderDo;
+	
 	@Column(name="MEDICINE_ID")
 	private Integer medicineId;
 	@Column(name="PRODUCT_NAME")
@@ -90,15 +98,23 @@ public class PurchaseOrderDetailsDo {
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
-	public Integer getPurchaseOrderId() {
-		return purchaseOrderId;
-	}
-	public void setPurchaseOrderId(Integer purchaseOrderId) {
-		this.purchaseOrderId = purchaseOrderId;
-	}
+//	public Integer getPurchaseOrderId() {
+//		return purchaseOrderId;
+//	}
+//	public void setPurchaseOrderId(Integer purchaseOrderId) {
+//		this.purchaseOrderId = purchaseOrderId;
+//	}
+	
+	
 	public Integer getMedicineId() {
 		return medicineId;
 	}
+//	public PurchaseOrderDo getPurchaseOrderDo() {
+//		return purchaseOrderDo;
+//	}
+//	public void setPurchaseOrderDo(PurchaseOrderDo purchaseOrderDo) {
+//		this.purchaseOrderDo = purchaseOrderDo;
+//	}
 	public void setMedicineId(Integer medicineId) {
 		this.medicineId = medicineId;
 	}

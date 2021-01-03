@@ -3,6 +3,7 @@
  */
 package com.myproject.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class HMController {
 	}
 	
 	@PostMapping("/generateBill")
-	public String generateBill(@RequestBody BillingDto billingDto) {
+	public HashMap<String , Object> generateBill(@RequestBody BillingDto billingDto) {
 		return hospitalServices.generateBill(billingDto);
 	}
 

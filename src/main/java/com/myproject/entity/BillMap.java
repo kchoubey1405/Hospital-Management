@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,7 +51,8 @@ public class BillMap {
 	@Column(name="TOTAL_COST")
 	private BigDecimal totalCost;
 	
-	@OneToMany(targetEntity=BillDetailsDo.class , mappedBy="billMapId" ,cascade=CascadeType.ALL) 
+	@OneToMany(cascade=CascadeType.ALL) 
+	@JoinColumn(name="BILL_MAP_ID")
 	private List<BillDetailsDo> billDetailList;
 
 	

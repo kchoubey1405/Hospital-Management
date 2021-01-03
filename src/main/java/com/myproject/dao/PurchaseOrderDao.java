@@ -39,7 +39,7 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		return entityManager.unwrap(Session.class);
 	}
 
-	@Override
+//	@Override
 	protected PurchaseOrderDo importDto(PurchaseOrderDto fromDto) {
 		PurchaseOrderDo entity = new PurchaseOrderDo();
 		entity.setPurchaseOrderId(fromDto.getPurchaseOrderId());
@@ -54,7 +54,8 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 			product.setProductId(p1.getProductId());
 			product.setProductName(p1.getProductName());
 			product.setPurchaseCost(p1.getPurchaseCost());
-			product.setPurchaseOrderId(p1.getPurchaseOrderId());
+//			product.setPurchaseOrderId(p1.getPurchaseOrderId());
+//			product.setPurchaseOrderDo(p1.getPurchaseOrderDo());
 			product.setQuantity(p1.getQuantity());
 			product.setTax(p1.getTax());
 			product.setUnit(p1.getUnit());
@@ -67,7 +68,7 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		return entity;
 	}
 
-	@Override
+//	@Override
 	protected PurchaseOrderDto exportDto(PurchaseOrderDo entity) {
 		PurchaseOrderDto dto = new PurchaseOrderDto();
 		dto.setPurchaseOrderId(entity.getPurchaseOrderId());
@@ -82,7 +83,8 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 			product.setProductId(p1.getProductId());
 			product.setProductName(p1.getProductName());
 			product.setPurchaseCost(p1.getPurchaseCost());
-			product.setPurchaseOrderId(p1.getPurchaseOrderId());
+//			product.setPurchaseOrderId(p1.getPurchaseOrderId());
+//			product.setPurchaseOrderDo(p1.getPurchaseOrderDo());
 			product.setQuantity(p1.getQuantity());
 			product.setTax(p1.getTax());
 			product.setUnit(p1.getUnit());
@@ -98,7 +100,9 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 	public String saveOrUpdatePurchaseOrder(PurchaseOrderDto dto){
 		String resonse="failure";
 		try{
-			this.getSession().saveOrUpdate(importDto(dto));
+//			this.getSession().saveOrUpdate(importDto(dto));
+			PurchaseOrderDo purchaseOrderDo= entityManager.contains(importDto(dto)) ? importDto(dto) : entityManager.merge(importDto(dto));
+			this.getSession().saveOrUpdate(purchaseOrderDo);
 			resonse="success";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -110,8 +114,6 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 	public String deletePurchaseOrder(PurchaseOrderDto dto) {
 		String resonse="failure";
 		try{
-			Session session = this.getSession();
-//			session.delete(importDto(dto));
 			entityManager.remove(entityManager.contains(importDto(dto)) ? importDto(dto) : entityManager.merge(importDto(dto)));
 			resonse="success";
 		}catch(Exception e){
