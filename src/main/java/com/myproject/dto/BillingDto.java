@@ -7,14 +7,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.myproject.entity.BillDetailsDo;
-
 /**
  * @author Kamlesh.Choubey
  *
  */
 public class BillingDto {
-	private String billId;
+	private Integer billId;
 	private String billType;
 	private Date createdAt;
 	private String paymentStatus;
@@ -23,11 +21,13 @@ public class BillingDto {
 	private BigDecimal totalCost;
 	private List<BillDetailsDto> billDetailList;
 
-	public String getBillId() {
+	
+
+	public Integer getBillId() {
 		return billId;
 	}
 
-	public void setBillId(String billId) {
+	public void setBillId(Integer billId) {
 		this.billId = billId;
 	}
 
