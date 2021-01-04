@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.dto.AppointmentDto;
 import com.myproject.entity.AppointmentDo;
-import com.myproject.entity.PrescribedTestingDo;
 import com.myproject.persistent.util.BaseDao;
 
 /**
@@ -49,6 +48,7 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 		entity.setAppointmentDate(fromDto.getAppointmentDate());
 		entity.setPatientName(fromDto.getPatientName());
 		entity.setTimeSlot(fromDto.getTimeSlot());
+		entity.setStatus(fromDto.getStatus());
 		return entity;
 	}
 
@@ -66,6 +66,7 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 		dto.setAppointmentDate(entity.getAppointmentDate());
 		dto.setPatientName(entity.getPatientName());
 		dto.setTimeSlot(entity.getTimeSlot());
+		dto.setStatus(entity.getStatus());
 		return dto;
 	}
 

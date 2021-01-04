@@ -54,6 +54,8 @@ public class AppointmentDo implements BaseDo{
 	@Column(name = "APPOINTMENT_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date appointmentDate;
+	@Column(name = "STATUS", length = 10)
+	private String status;
 	
 	@Column(name="TIME_SLOT", length=20)
 	private String timeSlot;
@@ -132,6 +134,13 @@ public class AppointmentDo implements BaseDo{
 	}
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public Object getPrimaryKey() {

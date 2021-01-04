@@ -25,6 +25,7 @@ public class AppointmentDto extends BaseDto{
 	private Date createdAt;
 	private Date appointmentDate;
 	private String timeSlot;
+	private String status;
 	
 
 	public String getTimeSlot() {
@@ -121,6 +122,15 @@ public class AppointmentDto extends BaseDto{
 
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
+	}
+
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
