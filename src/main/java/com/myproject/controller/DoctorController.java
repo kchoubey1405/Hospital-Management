@@ -25,6 +25,11 @@ public class DoctorController {
     public ResponseDto savePrescription(@RequestBody PrescriptionDto prescriptionDto) {
         return doctorService.savePriscription(prescriptionDto);
     }
+    
+    @GetMapping("/getPrescriptionDetails")
+    public PrescriptionDto getPrescriptionDetails(@RequestParam(value="appointmentId") String appointmentId) {
+        return doctorService.getPrescriptionDetails(appointmentId);
+    }
 
     @PostMapping("/createNewDoctorsRecord")
     public ResponseDto createNewDoctorsRecord(@RequestBody DoctorDto doctorDto) {
