@@ -21,6 +21,7 @@ public class PrescribedTestingDto extends BaseDto {
 	private BigDecimal cost;
 	private String testDesc;
 	private String billId;
+	private String comment;
 	public String getTestId() {
 		return testId;
 	}
@@ -69,11 +70,12 @@ public class PrescribedTestingDto extends BaseDto {
 	public void setBillId(String billId) {
 		this.billId = billId;
 	}
-	@Override
-	public String toString() {
-		return "PrescribedTestingDto [testId=" + testId + ", appointmentId=" + appointmentId + ", dateOfBooking="
-				+ dateOfBooking + ", dateOfResult=" + dateOfResult + ", reportDesc=" + reportDesc + ", cost=" + cost
-				+ ", testDesc=" + testDesc + ", billId=" + billId + "]";
+
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	@Override
 	public Boolean getValidForUsage() {

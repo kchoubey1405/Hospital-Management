@@ -17,6 +17,9 @@ public class PrescribedMedsDto extends BaseDto{
 	private BigDecimal days;
 	private BigDecimal cost;
 	private String billId;
+	private BigDecimal comment;
+	private String dosage;
+	private String appointmentId;
 	public String getPrescribedMedId() {
 		return prescribedMedId;
 	}
@@ -47,10 +50,24 @@ public class PrescribedMedsDto extends BaseDto{
 	public void setBillId(String billId) {
 		this.billId = billId;
 	}
-	@Override
-	public String toString() {
-		return "PrescribedMedsDto [prescribedMedId=" + prescribedMedId + ", medName=" + medName + ", days=" + days
-				+ ", cost=" + cost + ", billId=" + billId + "]";
+	
+	public BigDecimal getComment() {
+		return comment;
+	}
+	public void setComment(BigDecimal comment) {
+		this.comment = comment;
+	}
+	public String getDosage() {
+		return dosage;
+	}
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
+	}
+	public String getAppointmentId() {
+		return appointmentId;
+	}
+	public void setAppointmentId(String appointmentId) {
+		this.appointmentId = appointmentId;
 	}
 	@Override
 	public Boolean getValidForUsage() {

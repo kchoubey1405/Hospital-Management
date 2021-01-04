@@ -19,5 +19,6 @@ public interface DoctorService {
 	public List<DoctorDto> getDoctorsList(String department);
 	public List<DoctorDto> getAllDoctorsList();
 	public ResponseDto createNewDoctorRecord(DoctorDto doctorDto);
+	public PrescriptionDto getPrescriptionDetails(String appointmentId);
 
 }

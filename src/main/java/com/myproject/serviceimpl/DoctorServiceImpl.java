@@ -53,15 +53,17 @@ public class DoctorServiceImpl implements DoctorService {
 		responseDto.setResponseCode(ApplicationConstant.FAILURE_CODE);
 		responseDto.setStatus(ApplicationConstant.FAILURE);
 		AppointmentDto appointmentDto = prescriptionDto.getAppointmentDto();
-		appointmentDao.createOrUpdate(appointmentDto);
+		AppointmentDto dto =appointmentDao.createOrUpdate(appointmentDto);
 		List<PrescribedMedsDto> prescribedMedsDtoList = prescriptionDto.getPrescribedMedsDtoList();
 		prescribedMedsDtoList.stream().forEach(p -> {
-		p.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID ,appointmentDto.getPatientId()));
+//		p.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID ,appointmentDto.getPatientId()));
+			p.setAppointmentId(dto.getAppointmentId());
 		prescribedMedsDao.createOrUpdate(p);
 		});
 		List<PrescribedTestingDto> prescribedTestingDtoList = prescriptionDto.getPrescribedTestingDtoList();
 		prescribedTestingDtoList.stream().forEach(d -> {
-			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID,appointmentDto.getPatientId()));
+//			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID,appointmentDto.getPatientId()));
+			d.setAppointmentId(dto.getAppointmentId());
 			prescribedTestingDao.createOrUpdate(d);
 			});
 		responseDto.setResponseMessage("Saved successfully");
@@ -97,5 +99,14 @@ public class DoctorServiceImpl implements DoctorService {
 		responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);
 		responseDto.setStatus(ApplicationConstant.SUCCESS);
 		return responseDto;
+	}
+
+	@Override
+	public PrescriptionDto getPrescriptionDetails(String appointmentId) {
+		PrescriptionDto dto = new PrescriptionDto();
+		dto.setAppointmentDto(appointmentDao.getAppointmentDetailsById(appointmentId));
+		dto.setPrescribedMedsDtoList(prescribedMedsDao.getPrescribedMedsListByAppointmentId(appointmentId));
+		dto.setPrescribedTestingDtoList(prescribedTestingDao.getPrescribedTestingListByAppointmentId(appointmentId));
+		return dto;
 	}
 }
