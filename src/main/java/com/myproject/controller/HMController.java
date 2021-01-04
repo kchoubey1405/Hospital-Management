@@ -49,6 +49,11 @@ public class HMController {
 			@RequestParam(value = "pazeSize") int pazeSize) {
 		return hospitalServices.getAppointmentList(doctorId, numberOfDays, startIndex, pazeSize);
 	}
+	
+	@GetMapping("/getAppointmentListByPatientId")
+	public List<AppointmentDto> getAppointmentListByPatientId(@RequestParam(value = "patientId") String patientId) {
+		return hospitalServices.getAppointmentListByPatientId(patientId);
+	}
 
 	@GetMapping("/fetchBillDtails")
 	public BillingDto fetchBillDtails(@RequestParam(value="patientId") String patientId, @RequestParam(value="billId") String billId) {

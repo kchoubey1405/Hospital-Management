@@ -21,5 +21,6 @@ public interface HospitalServices {
 	public List<AppointmentDto> getAppointmentList(String doctorId , int numberOfDays , int startIndex, int lastIndext);
 	public HashMap<String , Object> generateBill(BillingDto billingDto) ;
 	public BillingDto fetchBillDtails(String patientId, String billId);
+	public List<AppointmentDto> getAppointmentListByPatientId(String patientId);
 
 }

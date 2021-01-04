@@ -7,18 +7,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.dto.AppointmentDto;
 import com.myproject.entity.AppointmentDo;
+import com.myproject.entity.PrescribedTestingDo;
 import com.myproject.persistent.util.BaseDao;
 
 /**
@@ -28,6 +31,10 @@ import com.myproject.persistent.util.BaseDao;
 @Repository
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
+	
+	@Autowired
+	EntityManager entityManager; 
+	
 	public AppointmentDo importDto(AppointmentDto fromDto) {
 		AppointmentDo entity = new AppointmentDo();
 		entity.setAppointmentId(fromDto.getAppointmentId());
@@ -95,5 +102,14 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 			e.printStackTrace();
 		}
 		return dtoList;
+	}
+
+	public List<AppointmentDto> getAppointmentList(String patientId) {
+		CriteriaBuilder builder = this.getSession().getCriteriaBuilder();
+		CriteriaQuery<AppointmentDo> criteria = builder.createQuery(AppointmentDo.class);
+		Root<AppointmentDo> r = criteria.from(AppointmentDo.class);
+		criteria.where(builder.equal(r.get("patientId"), patientId));
+		TypedQuery<AppointmentDo> q = entityManager.createQuery(criteria);
+		return exportDtoList(q.getResultList());
 	}
 }

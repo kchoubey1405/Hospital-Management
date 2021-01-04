@@ -65,4 +65,9 @@ public class HospitalServicesImpl implements HospitalServices{
 		return billingDao.fetchBillDtails(patientId, billId);
 	}
 
+	@Override
+	public List<AppointmentDto> getAppointmentListByPatientId(String patientId) {
+		return appointmentDao.getAppointmentList(patientId);
+	}
+
 }
