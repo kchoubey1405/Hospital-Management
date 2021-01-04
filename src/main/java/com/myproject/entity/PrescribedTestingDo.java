@@ -46,6 +46,8 @@ public class PrescribedTestingDo implements BaseDo {
 	private BigDecimal cost;
 	@Column(name = "TEST_DESC", length = 250)
 	private String testDesc;
+	@Column(name = "COMMENT", length = 250)
+	private String comment;
 	@Column(name = "BILL_ID", length = 100)
 	private String billId;
 	public String getTestId() {
@@ -96,11 +98,12 @@ public class PrescribedTestingDo implements BaseDo {
 	public void setBillId(String billId) {
 		this.billId = billId;
 	}
-	@Override
-	public String toString() {
-		return "PrescribedTestingDto [testId=" + testId + ", appointmentId=" + appointmentId + ", dateOfBooking="
-				+ dateOfBooking + ", dateOfResult=" + dateOfResult + ", reportDesc=" + reportDesc + ", cost=" + cost
-				+ ", testDesc=" + testDesc + ", billId=" + billId + "]";
+	
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	@Override
 	public Object getPrimaryKey() {
