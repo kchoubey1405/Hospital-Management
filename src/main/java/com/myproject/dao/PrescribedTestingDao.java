@@ -42,6 +42,7 @@ public class PrescribedTestingDao extends BaseDao<PrescribedTestingDo, Prescribe
 		entity.setCost(fromDto.getCost());
 		entity.setTestDesc(fromDto.getTestDesc());
 		entity.setComment(fromDto.getComment());
+		entity.setTestName(fromDto.getTestName());
 		return entity;
 	}
 
@@ -56,6 +57,7 @@ public class PrescribedTestingDao extends BaseDao<PrescribedTestingDo, Prescribe
 		dto.setCost(entity.getCost());
 		dto.setTestDesc(entity.getTestDesc());
 		dto.setComment(entity.getComment());
+		dto.setTestName(entity.getTestName());
 		return dto;
 	}
 	

@@ -22,6 +22,7 @@ public class PrescribedTestingDto extends BaseDto {
 	private String testDesc;
 	private String billId;
 	private String comment;
+	private String testName;
 	public String getTestId() {
 		return testId;
 	}
@@ -76,6 +77,14 @@ public class PrescribedTestingDto extends BaseDto {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	
+	
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
 	}
 	@Override
 	public Boolean getValidForUsage() {
