@@ -69,6 +69,7 @@ public class PrescribedMedsDto extends BaseDto{
 	public void setAppointmentId(String appointmentId) {
 		this.appointmentId = appointmentId;
 	}
+	
 	@Override
 	public Boolean getValidForUsage() {
 		// TODO Auto-generated method stub

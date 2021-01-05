@@ -26,6 +26,7 @@ public class AppointmentDto extends BaseDto{
 	private Date appointmentDate;
 	private String timeSlot;
 	private String status;
+	private BigDecimal temprature;
 	
 
 	public String getTimeSlot() {
@@ -131,6 +132,14 @@ public class AppointmentDto extends BaseDto{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public BigDecimal getTemprature() {
+		return temprature;
+	}
+
+	public void setTemprature(BigDecimal temprature) {
+		this.temprature = temprature;
 	}
 
 	@Override

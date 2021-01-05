@@ -32,6 +32,8 @@ public class PrescribedTestingDo implements BaseDo {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "PRESC_TEST_ID", length = 100)
 	private String testId;	
+	@Column(name = "TEST_NAME")
+	private String testName;
 	@Column(name = "APPOINTMENT_ID", length = 100)
 	private String appointmentId;
 	@Column(name = "DATE_OF_BOOKING")
@@ -104,6 +106,14 @@ public class PrescribedTestingDo implements BaseDo {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	
+	
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
 	}
 	@Override
 	public Object getPrimaryKey() {

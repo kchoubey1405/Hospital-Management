@@ -46,6 +46,8 @@ public class AppointmentDo implements BaseDo{
 	private BigDecimal height;
 	@Column(name = "WEIGHT")
 	private BigDecimal weight;
+	@Column(name = "TEMPERATURE")
+	private BigDecimal temprature;
 	@Column(name = "BP", length = 100)
 	private String Bp;
 	@Column(name = "CREATED_AT")
@@ -141,6 +143,14 @@ public class AppointmentDo implements BaseDo{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	
+	public BigDecimal getTemprature() {
+		return temprature;
+	}
+	public void setTemprature(BigDecimal temprature) {
+		this.temprature = temprature;
 	}
 	@Override
 	public Object getPrimaryKey() {
