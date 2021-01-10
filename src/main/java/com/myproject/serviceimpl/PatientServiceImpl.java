@@ -59,4 +59,9 @@ public class PatientServiceImpl implements PatientService {
 		return patientDao.getAllPatientList(patientId);
 	}
 
+	@Override
+	public List<PatientDto> getPatientByName(String patientName) {
+		return patientDao.getPatientByName(patientName);
+	}
+
 }

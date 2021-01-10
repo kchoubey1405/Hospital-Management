@@ -9,6 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -112,4 +116,14 @@ public class PatientDao {
 //		}
         return returnDtos;
     }
+
+	public List<PatientDto> getPatientByName(String patientName) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PatientDo> criteriaQuery = cb.createQuery(PatientDo.class);
+		Root<PatientDo> root = criteriaQuery.from(PatientDo.class);
+		criteriaQuery.where(cb.equal(root.get("patientName"), patientName));
+		TypedQuery<PatientDo> query = entityManager.createQuery(criteriaQuery);
+		return exportDtoList(query.getResultList());
+		
+	}
 }

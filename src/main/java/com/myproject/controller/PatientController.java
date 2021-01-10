@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myproject.dao.PatientDao;
 import com.myproject.dto.PatientDto;
-import com.myproject.dto.ResponseDto;
 import com.myproject.service.PatientService;
 
 /**
@@ -43,6 +41,11 @@ public class PatientController {
 	@GetMapping("/patientById")
 	public PatientDto getPatientById(@RequestParam String patientId) {
 		return patientService.getPatientById(patientId);
+	}
+	
+	@GetMapping("/patientByName")
+	public List<PatientDto> getPatientByName(@RequestParam String patientName) {
+		return patientService.getPatientByName(patientName);
 	}
 
 	@GetMapping("/patientsList")
