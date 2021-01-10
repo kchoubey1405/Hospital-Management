@@ -56,7 +56,7 @@ public class AppointmentDo implements BaseDo{
 	@Column(name = "APPOINTMENT_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date appointmentDate;
-	@Column(name = "STATUS", length = 10)
+	@Column(name = "STATUS", length = 100)
 	private String status;
 	
 	@Column(name="TIME_SLOT", length=20)

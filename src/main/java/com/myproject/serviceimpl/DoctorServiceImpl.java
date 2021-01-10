@@ -55,17 +55,22 @@ public class DoctorServiceImpl implements DoctorService {
 		AppointmentDto appointmentDto = prescriptionDto.getAppointmentDto();
 		AppointmentDto dto =appointmentDao.createOrUpdate(appointmentDto);
 		List<PrescribedMedsDto> prescribedMedsDtoList = prescriptionDto.getPrescribedMedsDtoList();
-		prescribedMedsDtoList.stream().forEach(p -> {
+
+		if(prescribedMedsDtoList != null) {
+			prescribedMedsDtoList.stream().forEach(p -> {
 //		p.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID ,appointmentDto.getPatientId()));
-			p.setAppointmentId(dto.getAppointmentId());
-		prescribedMedsDao.createOrUpdate(p);
-		});
-		List<PrescribedTestingDto> prescribedTestingDtoList = prescriptionDto.getPrescribedTestingDtoList();
-		prescribedTestingDtoList.stream().forEach(d -> {
-//			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID,appointmentDto.getPatientId()));
-			d.setAppointmentId(dto.getAppointmentId());
-			prescribedTestingDao.createOrUpdate(d);
+				p.setAppointmentId(dto.getAppointmentId());
+				prescribedMedsDao.createOrUpdate(p);
 			});
+		}
+		List<PrescribedTestingDto> prescribedTestingDtoList = prescriptionDto.getPrescribedTestingDtoList();
+		if (prescribedTestingDtoList != null) {
+			prescribedTestingDtoList.stream().forEach(d -> {
+//			d.setBillId(billDao.generateBill(ApplicationConstant.MEDICINEBILL, ApplicationConstant.PAID,appointmentDto.getPatientId()));
+				d.setAppointmentId(dto.getAppointmentId());
+				prescribedTestingDao.createOrUpdate(d);
+			});
+		}
 		responseDto.setResponseMessage("Saved successfully");
 		responseDto.setResponseCode(ApplicationConstant.SUCCESS_CODE);
 		responseDto.setStatus(ApplicationConstant.SUCCESS);
