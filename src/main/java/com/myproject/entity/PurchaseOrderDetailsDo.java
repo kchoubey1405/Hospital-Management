@@ -5,6 +5,7 @@ package com.myproject.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Kamlesh.Choubey
@@ -50,6 +53,9 @@ public class PurchaseOrderDetailsDo implements Serializable{
 	private BigDecimal discount;
 	@Column(name="TAX")
 	private BigDecimal tax;
+	@Column(name="DELIVERY_DATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date expiryDate;
 	public String getProductName() {
 		return productName;
 	}
@@ -118,6 +124,12 @@ public class PurchaseOrderDetailsDo implements Serializable{
 	public void setMedicineId(Integer medicineId) {
 		this.medicineId = medicineId;
 	}
-	
 
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 }

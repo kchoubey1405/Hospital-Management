@@ -1,5 +1,6 @@
 package com.myproject.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class PurchaseOrderDo implements BaseDo {
 	private Date orderDate;
 	@Column(name="SUPPLIER_NAME" , length=100)
 	private String supplierName;
+	@Column(name="INVOICE_NUMBER" , length=100)
+	private String invoiceNumber;
+	@Column(name="STATUS" , length=100)
+	private String status;
 	@Column(name="STORE_NAME" , length=100)
 	private String storeName;
 	@Column(name="DELIVERY_DATE")
@@ -40,7 +45,13 @@ public class PurchaseOrderDo implements BaseDo {
 	private Date deliveryDate;
 	@Column(name="ROL")
 	private Boolean rol;
-	
+	@Column(name="TOTAL_AMOUNT")
+	private BigDecimal totalAmount;
+	@Column(name="TOTAL_GST")
+	private BigDecimal totalGST;
+	@Column(name="TOTAL_DISCOUNT")
+	private BigDecimal totalDiscount;
+
 //	@OneToMany(targetEntity=PurchaseOrderDetailsDo.class , mappedBy="purchaseOrderId" ,cascade=CascadeType.ALL) 
 	@OneToMany(cascade = CascadeType.ALL)  
 	@JoinColumn(name="PURCHASE_ORDER_ID") 
@@ -75,7 +86,23 @@ public class PurchaseOrderDo implements BaseDo {
 	public void setRol(Boolean rol) {
 		this.rol = rol;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getInvoiceNumber() {
+		return invoiceNumber;
+	}
+
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
 	public List<PurchaseOrderDetailsDo> getProductDetails() {
 		return productDetails;
 	}
@@ -88,6 +115,31 @@ public class PurchaseOrderDo implements BaseDo {
 	public void setPurchaseOrderId(Integer purchaseOrderId) {
 		this.purchaseOrderId = purchaseOrderId;
 	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public BigDecimal getTotalGST() {
+		return totalGST;
+	}
+
+	public void setTotalGST(BigDecimal totalGST) {
+		this.totalGST = totalGST;
+	}
+
+	public BigDecimal getTotalDiscount() {
+		return totalDiscount;
+	}
+
+	public void setTotalDiscount(BigDecimal totalDiscount) {
+		this.totalDiscount = totalDiscount;
+	}
+
 	@Override
 	public Object getPrimaryKey() {
 		// TODO Auto-generated method stub

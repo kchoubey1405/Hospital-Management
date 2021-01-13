@@ -45,6 +45,11 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		entity.setPurchaseOrderId(fromDto.getPurchaseOrderId());
 		entity.setDeliveryDate(fromDto.getDeliveryDate());
 		entity.setOrderDate(fromDto.getOrderDate());
+		entity.setStatus(fromDto.getStatus());
+		entity.setInvoiceNumber(fromDto.getInvoiceNumber());
+		entity.setTotalAmount(fromDto.getTotalAmount());
+		entity.setTotalDiscount(fromDto.getTotalDiscount());
+		entity.setTotalGST(fromDto.getTotalGST());
 		List<PurchaseOrderDetailsDo> productList = new ArrayList<>();
 		fromDto.getProductDetails().stream().forEach(p1-> {
 			PurchaseOrderDetailsDo product = new PurchaseOrderDetailsDo();
@@ -54,6 +59,7 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 			product.setProductId(p1.getProductId());
 			product.setProductName(p1.getProductName());
 			product.setPurchaseCost(p1.getPurchaseCost());
+			product.setExpiryDate(p1.getExpiryDate());
 //			product.setPurchaseOrderId(p1.getPurchaseOrderId());
 //			product.setPurchaseOrderDo(p1.getPurchaseOrderDo());
 			product.setQuantity(p1.getQuantity());
@@ -74,6 +80,11 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		dto.setPurchaseOrderId(entity.getPurchaseOrderId());
 		dto.setDeliveryDate(entity.getDeliveryDate());
 		dto.setOrderDate(entity.getOrderDate());
+		dto.setStatus(entity.getStatus());
+		dto.setInvoiceNumber(entity.getInvoiceNumber());
+		dto.setTotalAmount(entity.getTotalAmount());
+		dto.setTotalDiscount(entity.getTotalDiscount());
+		dto.setTotalGST(entity.getTotalGST());
 		List<PurchaseOrderDetailsDto> productList = new ArrayList<>();
 		entity.getProductDetails().stream().forEach(p1-> {
 			PurchaseOrderDetailsDto product = new PurchaseOrderDetailsDto();
@@ -83,6 +94,7 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 			product.setProductId(p1.getProductId());
 			product.setProductName(p1.getProductName());
 			product.setPurchaseCost(p1.getPurchaseCost());
+			product.setExpiryDate(p1.getExpiryDate());
 //			product.setPurchaseOrderId(p1.getPurchaseOrderId());
 //			product.setPurchaseOrderDo(p1.getPurchaseOrderDo());
 			product.setQuantity(p1.getQuantity());
@@ -93,7 +105,7 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		dto.setProductDetails(productList);
 		dto.setRol(entity.getRol());
 		dto.setStoreName(entity.getStoreName());
-		dto.setSupplierName(entity.getStoreName());
+		dto.setSupplierName(entity.getSupplierName());
 		return dto;
 	}
 	

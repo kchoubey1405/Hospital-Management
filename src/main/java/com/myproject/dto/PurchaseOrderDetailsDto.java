@@ -4,6 +4,7 @@
 package com.myproject.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import com.myproject.entity.PurchaseOrderDo;
 
@@ -20,6 +21,7 @@ public class PurchaseOrderDetailsDto {
 	private Integer quantity;
 	private String unit;
 	private BigDecimal purchaseCost;
+	private Date expiryDate;
 	private BigDecimal discount;
 	private BigDecimal tax;
 	private PurchaseOrderDo purchaseOrderDo;
@@ -89,6 +91,12 @@ public class PurchaseOrderDetailsDto {
 	public void setPurchaseOrderDo(PurchaseOrderDo purchaseOrderDo) {
 		this.purchaseOrderDo = purchaseOrderDo;
 	}
-	
-	
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 }
