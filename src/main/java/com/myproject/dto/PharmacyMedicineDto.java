@@ -30,6 +30,7 @@ public class PharmacyMedicineDto extends BaseDto{
 	private BigDecimal tax;
 	private String supplierName;
 	private String availability;
+	private BigDecimal stockQuantity;
 	public String getMedicineName() {
 		return medicineName;
 	}
@@ -120,6 +121,15 @@ public class PharmacyMedicineDto extends BaseDto{
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
+
+	public BigDecimal getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(BigDecimal stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
 	@Override
 	public Boolean getValidForUsage() {
 		// TODO Auto-generated method stub

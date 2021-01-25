@@ -63,7 +63,9 @@ public class PharmacyMedicineDo implements BaseDo {
 	private String supplierName;
 	@Column(name="AVAILABILITY" , length=20)
 	private String availability;
-	
+	@Column(name="STOCK_QUANTITY")
+	private BigDecimal stockQuantity;
+
 	public String getMedicineName() {
 		return medicineName;
 	}
@@ -154,8 +156,15 @@ public class PharmacyMedicineDo implements BaseDo {
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
-	
-	
+
+	public BigDecimal getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(BigDecimal stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
 	public Integer getMedicineId() {
 		return medicineId;
 	}

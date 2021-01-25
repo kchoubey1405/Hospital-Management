@@ -57,6 +57,7 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		entity.setTax(fromDto.getTax());
 		entity.setTriggerValue(fromDto.getTriggerValue());
 		entity.setUnit(fromDto.getUnit());
+		entity.setStockQuantity(fromDto.getStockQuantity());
 		return entity;
 	}
 
@@ -79,6 +80,7 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		dto.setTax(entity.getTax());
 		dto.setTriggerValue(entity.getTriggerValue());
 		dto.setUnit(entity.getUnit());
+		dto.setStockQuantity(entity.getStockQuantity());
 		return dto;
 	}
 	
