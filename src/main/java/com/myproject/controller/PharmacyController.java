@@ -81,5 +81,10 @@ public class PharmacyController {
 	public List<PurchaseOrderDto> getPurchaseOrderList() {
 		return pharmacyMedicineService.getPurchaseOrderList();
 	}
+	
+	@GetMapping("/getMedicineListByName")
+	public List<PharmacyMedicineDto> getMedicineListByName(@RequestParam(value="medicineName") String medicineName) {
+		return pharmacyMedicineService.getMedicineListByName(medicineName);
+	}
 
 }

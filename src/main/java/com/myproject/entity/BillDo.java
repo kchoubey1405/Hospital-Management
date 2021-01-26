@@ -33,8 +33,8 @@ public class BillDo implements BaseDo{
 	@Column(name="CREATED_AT")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
-	@Column(name="PATIENT_ID" , length = 100)
-	private String patientId;
+	@Column(name="PATIENT_ID")
+	private int patientId;
 	
 	public String getBillId() {
 		return billId;
@@ -61,10 +61,10 @@ public class BillDo implements BaseDo{
 		this.createdAt = createdAt;
 	}
 	
-	public String getPatientId() {
+	public int getPatientId() {
 		return patientId;
 	}
-	public void setPatientId(String patientId) {
+	public void setPatientId(int patientId) {
 		this.patientId = patientId;
 	}
 	@Override

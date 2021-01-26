@@ -14,9 +14,9 @@ import com.myproject.dto.PatientDto;
  */
 
 public interface PatientService {
-	HashMap<String , String> registerNewPatient(PatientDto patientDto);
+	HashMap<String , Object> registerNewPatient(PatientDto patientDto);
 	String getPatientNameById(String patientId);
-	PatientDto getPatientById(String patientId);
-	List<PatientDto> getAllPatientList(String patientId);
+	PatientDto getPatientById(int patientId);
+	List<PatientDto> getAllPatientList();
 	List<PatientDto> getPatientByName(String patientName);
 }

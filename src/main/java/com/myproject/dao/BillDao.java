@@ -55,7 +55,7 @@ public class BillDao extends BaseDao<BillDo, BillDto> {
 		return dto;
 	}
 
-	public String generateBill(String type, String status, String patientId) {
+	public String generateBill(String type, String status, int patientId) {
 		BillDto billDto = new BillDto();
 		Date createdAt = new Date();
 		String id = String.valueOf(createdAt.getTime());

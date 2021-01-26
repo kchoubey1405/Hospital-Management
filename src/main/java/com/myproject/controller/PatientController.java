@@ -29,7 +29,7 @@ public class PatientController {
 	PatientService patientService;
 	
 	@PostMapping("/registration")
-	public  HashMap<String , String> registerNewPatient(@RequestBody PatientDto patientDto){
+	public  HashMap<String , Object> registerNewPatient(@RequestBody PatientDto patientDto){
 		return patientService.registerNewPatient(patientDto);
 	}
 	
@@ -39,7 +39,7 @@ public class PatientController {
 	}
 
 	@GetMapping("/patientById")
-	public PatientDto getPatientById(@RequestParam String patientId) {
+	public PatientDto getPatientById(@RequestParam int patientId) {
 		return patientService.getPatientById(patientId);
 	}
 	
@@ -49,7 +49,7 @@ public class PatientController {
 	}
 
 	@GetMapping("/patientsList")
-	public List<PatientDto> getAllPatientList(String patientId) {
-		return patientService.getAllPatientList(patientId);
+	public List<PatientDto> getAllPatientList() {
+		return patientService.getAllPatientList();
 	}
 }

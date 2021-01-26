@@ -18,6 +18,7 @@ public class BillDetailsDto {
 	private BigDecimal concessionPercentage;
 	private BigDecimal mrp;
 	private String concessionType;
+	private BigDecimal quantity;
 
 	public Integer getId() {
 		return id;
@@ -83,4 +84,11 @@ public class BillDetailsDto {
 		this.concessionType = concessionType;
 	}
 
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
 }

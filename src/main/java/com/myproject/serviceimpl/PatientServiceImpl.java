@@ -23,14 +23,14 @@ public class PatientServiceImpl implements PatientService {
 	BillDao billDao;
 	
 	@Override
-	public HashMap<String , String> registerNewPatient(PatientDto patientDto) {
-		HashMap<String , String> response = new HashMap<>();
+	public HashMap<String , Object> registerNewPatient(PatientDto patientDto) {
+		HashMap<String , Object> response = new HashMap<>();
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setResponseMessage("Creation failed");
 		responseDto.setResponseCode(ApplicationConstant.FAILURE_CODE);
 		responseDto.setStatus(ApplicationConstant.FAILURE);
 		try{
-			String patientId = patientDao.registerNewPatient(patientDto);
+			int patientId = patientDao.registerNewPatient(patientDto);
 			response.put("patientId", patientId);
 			String billId = billDao.generateBill(ApplicationConstant.REGISTRATION, ApplicationConstant.PAID,patientId);
 			response.put("recieptId", billId);
@@ -50,13 +50,13 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientDto getPatientById(String patientId) {
+	public PatientDto getPatientById(int patientId) {
 		return patientDao.getPatientById(patientId);
 	}
 
 	@Override
-	public List<PatientDto> getAllPatientList(String patientId) {
-		return patientDao.getAllPatientList(patientId);
+	public List<PatientDto> getAllPatientList() {
+		return patientDao.getAllPatientList();
 	}
 
 	@Override

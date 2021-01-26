@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class PatientDto {
 
-	private String patientId;
+	private int patientId;
 	private String patientName;
 	private String guardiansName;
 	private Integer age;
@@ -27,10 +27,11 @@ public class PatientDto {
 	private String diseaseDesc;
 	private String visitType;
 	private Date createdAt;
-	public String getPatientId() {
+	
+	public int getPatientId() {
 		return patientId;
 	}
-	public void setPatientId(String patientId) {
+	public void setPatientId(int patientId) {
 		this.patientId = patientId;
 	}
 	public String getPatientName() {

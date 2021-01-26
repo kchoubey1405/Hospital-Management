@@ -46,6 +46,9 @@ public class BillDetailsDo {
 	
 	@Column(name="CONCESSION_TYPE" , length=100)
 	private String concessionType;
+	
+	@Column(name="QUANTITY")
+	private BigDecimal quantity;
 
 	public Integer getId() {
 		return id;
@@ -109,6 +112,14 @@ public class BillDetailsDo {
 
 	public void setConcessionType(String concessionType) {
 		this.concessionType = concessionType;
+	}
+
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 	
 	

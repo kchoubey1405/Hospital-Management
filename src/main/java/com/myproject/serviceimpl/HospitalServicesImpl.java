@@ -61,7 +61,7 @@ public class HospitalServicesImpl implements HospitalServices{
 	}
 
 	@Override
-	public BillingDto fetchBillDtails(String patientId, String billId) {
+	public List<BillingDto> fetchBillDtails(Integer patientId, String billId) {
 		return billingDao.fetchBillDtails(patientId, billId);
 	}
 

@@ -22,6 +22,8 @@ public interface PharmacyMedicineService {
 	public String saveOrUpdateSupplier(SupplierDto dto);
 	public String deleteMedicineRecord(PharmacyMedicineDto dto);
 	
+	public List<PharmacyMedicineDto> getMedicineListByName(String medicineName);
+	
 	//Purchase order CRUD
 	public String saveOrUpdatePurchaseOrder(PurchaseOrderDto dto);
 	public String deletePurchaseOrder(PurchaseOrderDto dto);

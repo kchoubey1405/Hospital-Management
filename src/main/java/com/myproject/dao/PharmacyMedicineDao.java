@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.myproject.dto.SupplierDto;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -99,7 +98,8 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
 		String resonse="failure";
 		try{
-			this.getSession().delete(importDto(dto));
+//			this.getSession().delete(importDto(dto));
+			entityManager.remove(entityManager.contains(importDto(dto)) ? importDto(dto) : entityManager.merge(importDto(dto)));
 			resonse="success";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -132,6 +132,16 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		System.out.println(e.getMessage());
 	}
 		return null;
+	}
+	
+	public List<PharmacyMedicineDto> getMedicineListByName(String medicineName) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PharmacyMedicineDo> criteriaQuery = cb.createQuery(PharmacyMedicineDo.class);
+		Root<PharmacyMedicineDo> root = criteriaQuery.from(PharmacyMedicineDo.class);
+		criteriaQuery.where(cb.like(root.<String>get("medicineName"),"%"+medicineName+"%"));
+		TypedQuery<PharmacyMedicineDo> query = entityManager.createQuery(criteriaQuery);
+		return exportDtoList(query.getResultList());
+		
 	}
 
 }

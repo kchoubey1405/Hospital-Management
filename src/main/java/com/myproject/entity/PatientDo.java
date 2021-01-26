@@ -3,15 +3,12 @@
  */
 package com.myproject.entity;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import com.myproject.persistent.util.BaseDo;
 
@@ -24,8 +21,9 @@ import com.myproject.persistent.util.BaseDo;
 @Table(name = "PATIENT_DETAILS")
 public class PatientDo implements BaseDo {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "patient_id", length = 100)
-	private String patientid = UUID.randomUUID().toString().replace("-", "");
+	private int patientid;
 
 	@Column(name = "PATIENT_NAME", length = 50)
 	private String patientName;
@@ -170,11 +168,11 @@ public class PatientDo implements BaseDo {
 		this.visitType = visitType;
 	}
 
-	public String getPatientid() {
+	public int getPatientid() {
 		return patientid;
 	}
 
-	public void setPatientid(String patientid) {
+	public void setPatientid(int patientid) {
 		this.patientid = patientid;
 	}
 

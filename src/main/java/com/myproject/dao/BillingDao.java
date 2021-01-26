@@ -3,9 +3,12 @@
  */
 package com.myproject.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -22,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.dto.BillDetailsDto;
 import com.myproject.dto.BillingDto;
+import com.myproject.dto.PharmacyMedicineDto;
 import com.myproject.entity.BillDetailsDo;
 import com.myproject.entity.BillMap;
 import com.myproject.utill.ServicesUtil;
@@ -36,6 +40,9 @@ public class BillingDao {
 
 	@Autowired
 	EntityManager entityManager;
+	
+	@Autowired
+	PharmacyMedicineDao pharmacyMedicineDao;
 
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);
@@ -61,6 +68,7 @@ public class BillingDao {
 			billDetailsDo.setItemId(billDetailsDto.getItemId());
 			billDetailsDo.setItemName(billDetailsDto.getItemName());
 			billDetailsDo.setMrp(billDetailsDto.getMrp());
+			billDetailsDo.setQuantity(billDetailsDto.getQuantity());
 			billDetailList.add(billDetailsDo);
 		}
 
@@ -89,6 +97,7 @@ public class BillingDao {
 			billDetailsDto.setItemId(billDetailsDo.getItemId());
 			billDetailsDto.setItemName(billDetailsDo.getItemName());
 			billDetailsDto.setMrp(billDetailsDo.getMrp());
+			billDetailsDto.setQuantity(billDetailsDo.getQuantity());
 			billDetailList.add(billDetailsDto);
 		}
 
@@ -106,6 +115,22 @@ public class BillingDao {
 			getSession().saveOrUpdate(billMap);
 			response = "success";
 			billId=billMap.getBillId();
+			if(billingDto.getBillType().equalsIgnoreCase("pharmacy-purchase")){
+				List<BillDetailsDto> itemList = billingDto.getBillDetailList();
+				for(BillDetailsDto billDetailsDto:itemList){
+					PharmacyMedicineDto pharmacyMedicineDto =pharmacyMedicineDao.getMedicineDetails(Integer.parseInt(billDetailsDto.getItemId()));
+					pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().intValue()-billDetailsDto.getQuantity().intValue()));
+					pharmacyMedicineDao.saveOrUpdateMedicine(pharmacyMedicineDto);
+				}
+				
+			}else if(billingDto.getBillType().equalsIgnoreCase("pharmacy-return")){
+				List<BillDetailsDto> itemList = billingDto.getBillDetailList();
+				for(BillDetailsDto billDetailsDto:itemList){
+					PharmacyMedicineDto pharmacyMedicineDto =pharmacyMedicineDao.getMedicineDetails(Integer.parseInt(billDetailsDto.getItemId()));
+					pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().intValue()+billDetailsDto.getQuantity().intValue()));
+					pharmacyMedicineDao.saveOrUpdateMedicine(pharmacyMedicineDto);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,7 +140,7 @@ public class BillingDao {
 	}
 	
 
-	public BillingDto fetchBillDtails(String patientId, String billId) {
+	public List<BillingDto> fetchBillDtails(Integer patientId, String billId) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<BillMap> criteria = builder.createQuery(BillMap.class);
 		Root<BillMap> d = criteria.from(BillMap.class);
@@ -125,7 +150,18 @@ public class BillingDao {
 			criteria.where(builder.equal(d.get("billId"), billId));
 		}
 		TypedQuery<BillMap> q = entityManager.createQuery(criteria);
-		return exportDto(q.getSingleResult());
+		return exportDtoList(q.getResultList());
+	}
+	
+	public List<BillingDto> exportDtoList(Collection<BillMap> listDo) {
+		List<BillingDto> returnDtos = null;
+		if (!ServicesUtil.isEmpty(listDo)) {
+			returnDtos = new ArrayList<BillingDto>(listDo.size());
+			for (Iterator<BillMap> iterator = listDo.iterator(); iterator.hasNext();) {
+				returnDtos.add(exportDto(iterator.next()));
+			}
+		}
+		return returnDtos;
 	}
 
 

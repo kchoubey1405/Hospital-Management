@@ -56,7 +56,7 @@ public class HMController {
 	}
 
 	@GetMapping("/fetchBillDtails")
-	public BillingDto fetchBillDtails(@RequestParam(value="patientId") String patientId, @RequestParam(value="billId") String billId) {
+	public List<BillingDto> fetchBillDtails(@RequestParam(value="patientId") Integer patientId, @RequestParam(value="billId") String billId) {
 		return hospitalServices.fetchBillDtails(patientId, billId);
 	}
 	

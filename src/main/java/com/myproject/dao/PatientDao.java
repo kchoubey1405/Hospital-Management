@@ -90,19 +90,19 @@ public class PatientDao {
         return query.uniqueResult().toString();
     }
 
-    public String registerNewPatient(PatientDto patientDto) {
+    public int registerNewPatient(PatientDto patientDto) {
     	PatientDo patientDo = importDto(patientDto);
         this.getSession().saveOrUpdate(patientDo);
         return patientDo.getPatientid();
     }
 
     @SuppressWarnings("deprecation")
-	public PatientDto getPatientById(String patientId) {
+	public PatientDto getPatientById(int patientId) {
         return exportDto((PatientDo) this.getSession().createCriteria(PatientDo.class).add(Restrictions.eq("patientid", patientId)).uniqueResult());
     }
 
     @SuppressWarnings({ "unchecked", "deprecation" })
-	public List<PatientDto> getAllPatientList(String patientId) {
+	public List<PatientDto> getAllPatientList() {
         return exportDtoList(this.getSession().createCriteria(PatientDo.class).list());
     }
 
@@ -121,7 +121,8 @@ public class PatientDao {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<PatientDo> criteriaQuery = cb.createQuery(PatientDo.class);
 		Root<PatientDo> root = criteriaQuery.from(PatientDo.class);
-		criteriaQuery.where(cb.equal(root.get("patientName"), patientName));
+//		criteriaQuery.where(cb.equal(root.get("patientName"), patientName));
+		criteriaQuery.where(cb.like(root.<String>get("patientName"),"%"+patientName+"%"));
 		TypedQuery<PatientDo> query = entityManager.createQuery(criteriaQuery);
 		return exportDtoList(query.getResultList());
 		
