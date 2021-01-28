@@ -19,6 +19,7 @@ public class BillDetailsDto {
 	private BigDecimal mrp;
 	private String concessionType;
 	private BigDecimal quantity;
+	private String purchaseType;
 
 	public Integer getId() {
 		return id;
@@ -90,5 +91,13 @@ public class BillDetailsDto {
 
 	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getPurchaseType() {
+		return purchaseType;
+	}
+
+	public void setPurchaseType(String purchaseType) {
+		this.purchaseType = purchaseType;
 	}
 }

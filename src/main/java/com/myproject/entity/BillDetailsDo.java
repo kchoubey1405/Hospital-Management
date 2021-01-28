@@ -50,6 +50,9 @@ public class BillDetailsDo {
 	@Column(name="QUANTITY")
 	private BigDecimal quantity;
 
+	@Column(name="PURCHASE_TYPE" , length=100)
+	private String purchaseType;
+
 	public Integer getId() {
 		return id;
 	}
@@ -121,7 +124,12 @@ public class BillDetailsDo {
 	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
-	
-	
 
+	public String getPurchaseType() {
+		return purchaseType;
+	}
+
+	public void setPurchaseType(String purchaseType) {
+		this.purchaseType = purchaseType;
+	}
 }
