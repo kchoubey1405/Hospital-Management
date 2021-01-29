@@ -56,11 +56,15 @@ public class BillingDao {
         entity.setPaymentStatus(fromDto.getPaymentStatus());
         entity.setCreatedAt(new Date());
         entity.setPatientId(fromDto.getPatientId());
+        entity.setTotalCost(fromDto.getTotalCost());
+        entity.setTotalDiscount(fromDto.getTotalDiscount());
+        entity.setTotalGST(fromDto.getTotalGST());
         List<BillDetailsDo> billDetailList = new ArrayList<>();
         fromDto.getBillDetailList().stream().forEach(billDetailsDto -> {
                                                          BillDetailsDo billDetailsDo = new BillDetailsDo();
                                                          billDetailsDo.setBillMapId(billDetailsDto.getBillMapId());
                                                          billDetailsDo.setConcessionPercentage(billDetailsDto.getConcessionPercentage());
+                                                         billDetailsDo.setGstPercentage(billDetailsDto.getGstPercentage());
                                                          billDetailsDo.setConcessionType(billDetailsDto.getConcessionType());
                                                          billDetailsDo.setCost(billDetailsDto.getCost());
                                                          billDetailsDo.setId(billDetailsDto.getId());
@@ -86,11 +90,15 @@ public class BillingDao {
         dto.setPaymentStatus(entity.getPaymentStatus());
         dto.setCreatedAt(new Date());
         dto.setPatientId(entity.getPatientId());
+        dto.setTotalCost(entity.getTotalCost());
+        dto.setTotalDiscount(entity.getTotalDiscount());
+        dto.setTotalGST(entity.getTotalGST());
         List<BillDetailsDto> billDetailList = new ArrayList<>();
         entity.getBillDetailList().stream().forEach(billDetailsDo -> {
                                                         BillDetailsDto billDetailsDto = new BillDetailsDto();
                                                         billDetailsDto.setBillMapId(billDetailsDo.getBillMapId());
                                                         billDetailsDto.setConcessionPercentage(billDetailsDo.getConcessionPercentage());
+                                                        billDetailsDto.setGstPercentage(billDetailsDo.getGstPercentage());
                                                         billDetailsDto.setConcessionType(billDetailsDo.getConcessionType());
                                                         billDetailsDto.setCost(billDetailsDo.getCost());
                                                         billDetailsDto.setId(billDetailsDo.getId());

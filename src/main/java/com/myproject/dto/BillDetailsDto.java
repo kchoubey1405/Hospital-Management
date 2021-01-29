@@ -16,6 +16,7 @@ public class BillDetailsDto {
 	private String billMapId;
 	private BigDecimal cost;
 	private BigDecimal concessionPercentage;
+	private BigDecimal gstPercentage;
 	private BigDecimal mrp;
 	private String concessionType;
 	private BigDecimal quantity;
@@ -99,5 +100,13 @@ public class BillDetailsDto {
 
 	public void setPurchaseType(String purchaseType) {
 		this.purchaseType = purchaseType;
+	}
+
+	public BigDecimal getGstPercentage() {
+		return gstPercentage;
+	}
+
+	public void setGstPercentage(BigDecimal gstPercentage) {
+		this.gstPercentage = gstPercentage;
 	}
 }

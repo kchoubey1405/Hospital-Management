@@ -40,7 +40,10 @@ public class BillDetailsDo {
 	
 	@Column(name="CONCESSION_PERCENTAGE")
 	private BigDecimal concessionPercentage;
-	
+
+	@Column(name="GST_PERCENTAGE")
+	private BigDecimal gstPercentage;
+
 	@Column(name="MRP")
 	private BigDecimal mrp;
 	
@@ -131,5 +134,13 @@ public class BillDetailsDo {
 
 	public void setPurchaseType(String purchaseType) {
 		this.purchaseType = purchaseType;
+	}
+
+	public BigDecimal getGstPercentage() {
+		return gstPercentage;
+	}
+
+	public void setGstPercentage(BigDecimal gstPercentage) {
+		this.gstPercentage = gstPercentage;
 	}
 }

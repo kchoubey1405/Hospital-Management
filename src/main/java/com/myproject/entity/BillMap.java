@@ -50,7 +50,13 @@ public class BillMap {
 	
 	@Column(name="TOTAL_COST")
 	private BigDecimal totalCost;
-	
+
+	@Column(name="TOTAL_GST")
+	private BigDecimal totalGST;
+
+	@Column(name="TOTAL_DISCOUNT")
+	private BigDecimal totalDiscount;
+
 	@OneToMany(cascade=CascadeType.ALL) 
 	@JoinColumn(name="BILL_MAP_ID")
 	private List<BillDetailsDo> billDetailList;
@@ -119,7 +125,20 @@ public class BillMap {
 	public void setBillDetailList(List<BillDetailsDo> billDetailList) {
 		this.billDetailList = billDetailList;
 	}
-	
-	
 
+	public BigDecimal getTotalGST() {
+		return totalGST;
+	}
+
+	public void setTotalGST(BigDecimal totalGST) {
+		this.totalGST = totalGST;
+	}
+
+	public BigDecimal getTotalDiscount() {
+		return totalDiscount;
+	}
+
+	public void setTotalDiscount(BigDecimal totalDiscount) {
+		this.totalDiscount = totalDiscount;
+	}
 }

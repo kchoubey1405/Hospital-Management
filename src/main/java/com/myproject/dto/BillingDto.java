@@ -19,9 +19,9 @@ public class BillingDto {
 	private String paymentMode;
 	private String patientId;
 	private BigDecimal totalCost;
+	private BigDecimal totalGST;
+	private BigDecimal totalDiscount;
 	private List<BillDetailsDto> billDetailList;
-
-	
 
 	public Integer getBillId() {
 		return billId;
@@ -87,5 +87,19 @@ public class BillingDto {
 		this.billDetailList = billDetailList;
 	}
 
-	
+	public BigDecimal getTotalGST() {
+		return totalGST;
+	}
+
+	public void setTotalGST(BigDecimal totalGST) {
+		this.totalGST = totalGST;
+	}
+
+	public BigDecimal getTotalDiscount() {
+		return totalDiscount;
+	}
+
+	public void setTotalDiscount(BigDecimal totalDiscount) {
+		this.totalDiscount = totalDiscount;
+	}
 }
