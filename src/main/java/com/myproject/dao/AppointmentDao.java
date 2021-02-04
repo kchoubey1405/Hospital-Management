@@ -82,7 +82,7 @@ public class AppointmentDao extends BaseDao<AppointmentDo, AppointmentDto> {
 	}
 	
 	public List<AppointmentDto> getAppointmentList(String doctorId, int numberOfDays, int startIndex, int pageSize){
-		System.err.println("inside dao");
+//		System.err.println("inside dao");
 		List<AppointmentDto> dtoList = null;
 		try{
 		Calendar cal = Calendar.getInstance();

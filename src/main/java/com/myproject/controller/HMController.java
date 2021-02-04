@@ -64,5 +64,10 @@ public class HMController {
 	public HashMap<String , Object> generateBill(@RequestBody BillingDto billingDto) {
 		return hospitalServices.generateBill(billingDto);
 	}
+	
+	@GetMapping("/fetchBillList")
+	public List<BillingDto> fetchBillList(@RequestParam(value="todate") Long todate , @RequestParam(value="fromDate") Long fromDate, @RequestParam(value="billType") String billType) {
+		return hospitalServices.fetchBillList(todate, fromDate , billType);
+	}
 
 }

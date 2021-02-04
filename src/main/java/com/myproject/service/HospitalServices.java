@@ -22,5 +22,6 @@ public interface HospitalServices {
 	public HashMap<String , Object> generateBill(BillingDto billingDto) ;
 	public List<BillingDto> fetchBillDtails(Integer patientId, String billId);
 	public List<AppointmentDto> getAppointmentListByPatientId(String patientId);
+	public List<BillingDto> fetchBillList(Long todate, Long fromDate, String billType);
 
 }

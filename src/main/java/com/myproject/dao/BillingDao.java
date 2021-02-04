@@ -5,6 +5,7 @@ package com.myproject.dao;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,11 +16,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.myproject.dto.AppointmentDto;
 import com.myproject.dto.BillDetailsDto;
 import com.myproject.dto.BillingDto;
 import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.entity.AppointmentDo;
 import com.myproject.entity.BillDetailsDo;
 import com.myproject.entity.BillMap;
 import com.myproject.utill.ServicesUtil;
@@ -88,7 +92,7 @@ public class BillingDao {
         dto.setBillType(entity.getBillType());
         dto.setPaymentMode(entity.getPaymentMode());
         dto.setPaymentStatus(entity.getPaymentStatus());
-        dto.setCreatedAt(new Date());
+        dto.setCreatedAt(entity.getCreatedAt());
         dto.setPatientId(entity.getPatientId());
         dto.setTotalCost(entity.getTotalCost());
         dto.setTotalDiscount(entity.getTotalDiscount());
@@ -167,4 +171,28 @@ public class BillingDao {
         }
         return returnDtos;
     }
+    
+    public List<BillingDto> fetchBillList(Long todate, Long fromDate, String billType) {
+    	List<BillingDto> dtoList = null;
+		try{
+		CriteriaBuilder builder = this.getSession().getCriteriaBuilder();
+		CriteriaQuery<BillMap> criteria = builder.createQuery(BillMap.class);
+		Root<BillMap> r = criteria.from(BillMap.class);
+		Predicate predicateForBillType
+		  = builder.equal(r.get("billType"), billType);
+		Predicate predicateForFromDate = builder.greaterThanOrEqualTo(r.get("createdAt"), new Date(fromDate));
+		Predicate predicateForTodate = builder.lessThanOrEqualTo(r.get("createdAt"), new Date(todate));
+		Predicate predicateForTimeRange =builder.and(predicateForFromDate , predicateForTodate);
+		Predicate predicate =builder.and(predicateForTimeRange , predicateForBillType);
+		criteria.where(predicate);
+		TypedQuery<BillMap> q = this.getSession().createQuery(criteria);
+//		q.setFirstResult(startIndex);
+//		q.setMaxResults(pageSize);
+		dtoList =  exportDtoList(q.getResultList());
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+		return dtoList;
+	}
 }

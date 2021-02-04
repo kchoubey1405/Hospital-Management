@@ -70,4 +70,9 @@ public class HospitalServicesImpl implements HospitalServices{
 		return appointmentDao.getAppointmentList(patientId);
 	}
 
+	@Override
+	public List<BillingDto> fetchBillList(Long todate, Long fromDate, String billType) {
+		return billingDao.fetchBillList(todate, fromDate,billType);
+	}
+
 }
