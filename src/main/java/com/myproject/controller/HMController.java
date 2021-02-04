@@ -65,8 +65,8 @@ public class HMController {
 		return hospitalServices.generateBill(billingDto);
 	}
 	
-	@GetMapping("/fetchBillList")
-	public List<BillingDto> fetchBillList(@RequestParam(value="todate") Long todate , @RequestParam(value="fromDate") Long fromDate, @RequestParam(value="billType") String billType) {
+	@GetMapping("/fetchBillListByDateRange")
+	public List<BillingDto> fetchBillList(@RequestParam(value="toDate") Long todate , @RequestParam(value="fromDate") Long fromDate, @RequestParam(value="billType") String billType) {
 		return hospitalServices.fetchBillList(todate, fromDate , billType);
 	}
 
