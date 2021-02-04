@@ -48,8 +48,8 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 	}
 
 	@Override
-	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
-		return pharmacyMedicineDao.deleteMedicineRecord(dto);
+	public String deleteMedicineRecord(String medicineId) {
+		return pharmacyMedicineDao.deleteMedicineRecord(medicineId);
 	}
 
 	@Override

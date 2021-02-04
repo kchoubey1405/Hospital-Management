@@ -7,13 +7,7 @@ import java.util.List;
 
 import com.myproject.dto.SupplierDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.myproject.dto.PharmacyMedicineDto;
 import com.myproject.dto.PurchaseOrderDto;
@@ -41,9 +35,9 @@ public class PharmacyController {
 		return pharmacyMedicineService.getMedicineDetails(medicineId);
 	}
 	
-	@DeleteMapping("/deleteMedicineRecord")
-	public String deleteMedicineRecord(@RequestBody PharmacyMedicineDto dto){
-		return pharmacyMedicineService.deleteMedicineRecord(dto);
+	@DeleteMapping("/deleteMedicineRecord/{medicineId}")
+	public String deleteMedicineRecord(@PathVariable(value = "medicineId") String medicineId){
+		return pharmacyMedicineService.deleteMedicineRecord(medicineId);
 	}
 	
 	@GetMapping("/getMedicineList")

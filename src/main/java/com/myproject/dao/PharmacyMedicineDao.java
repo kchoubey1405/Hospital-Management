@@ -8,10 +8,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.myproject.entity.MedicineDo;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -95,11 +98,15 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		return resonse;
 	}
 
-	public String deleteMedicineRecord(PharmacyMedicineDto dto) {
+	public String deleteMedicineRecord(String medicineId) {
 		String resonse="failure";
 		try{
 //			this.getSession().delete(importDto(dto));
-			entityManager.remove(entityManager.contains(importDto(dto)) ? importDto(dto) : entityManager.merge(importDto(dto)));
+			CriteriaDelete<PharmacyMedicineDo> criteriaDelete = entityManager.getCriteriaBuilder().createCriteriaDelete(PharmacyMedicineDo.class);
+			Root<PharmacyMedicineDo> root = criteriaDelete.from(PharmacyMedicineDo.class);
+			criteriaDelete.where(entityManager.getCriteriaBuilder().equal(root.get("medicineId"), medicineId));
+			entityManager.createQuery(criteriaDelete).executeUpdate();
+			//			entityManager.remove(entityManager.contains(importDto(dto)) ? importDto(dto) : entityManager.merge(importDto(dto)));
 			resonse="success";
 		}catch(Exception e){
 			System.out.println(e.getMessage());

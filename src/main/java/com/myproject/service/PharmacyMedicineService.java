@@ -20,7 +20,7 @@ public interface PharmacyMedicineService {
 	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto);
 	public List<SupplierDto> getSupplierList();
 	public String saveOrUpdateSupplier(SupplierDto dto);
-	public String deleteMedicineRecord(PharmacyMedicineDto dto);
+	public String deleteMedicineRecord(String medicineId);
 	
 	public List<PharmacyMedicineDto> getMedicineListByName(String medicineName);
 	
