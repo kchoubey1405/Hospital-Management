@@ -99,4 +99,9 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 		return pharmacyMedicineDao.getMedicineListByName(medicineName);
 	}
 
+	@Override
+	public List<PurchaseOrderDto> searchPurchaseOrder(String invoiceNum, String supplierName) {
+		return purchaseOrderDao.searchPurchaseOrder(invoiceNum, supplierName);
+	}
+
 }

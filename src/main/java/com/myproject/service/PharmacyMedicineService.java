@@ -29,4 +29,5 @@ public interface PharmacyMedicineService {
 	public String deletePurchaseOrder(PurchaseOrderDto dto);
 	public PurchaseOrderDto getPurchaseOrderDetails(Integer purchaseOrderId);
 	public List<PurchaseOrderDto> getPurchaseOrderList();
+	public List<PurchaseOrderDto> searchPurchaseOrder(String invoiceNum, String supplierName);
 }

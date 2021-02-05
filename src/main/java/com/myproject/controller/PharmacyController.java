@@ -81,4 +81,8 @@ public class PharmacyController {
 		return pharmacyMedicineService.getMedicineListByName(medicineName);
 	}
 
+	@GetMapping("/searchPurchaseOrder")
+	public List<PurchaseOrderDto> searchPurchaseOrder(@RequestParam(value="invoiceNum") String invoiceNum , @RequestParam(value="supplierName") String supplierName) {
+		return pharmacyMedicineService.searchPurchaseOrder(invoiceNum , supplierName);
+	}
 }

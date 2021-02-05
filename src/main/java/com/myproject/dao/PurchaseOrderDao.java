@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -20,9 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.dto.PurchaseOrderDetailsDto;
 import com.myproject.dto.PurchaseOrderDto;
+import com.myproject.entity.PatientDo;
 import com.myproject.entity.PurchaseOrderDetailsDo;
 import com.myproject.entity.PurchaseOrderDo;
 import com.myproject.persistent.util.BaseDao;
+import com.myproject.utill.ServicesUtil;
 
 /**
  * @author Kamlesh.Choubey
@@ -160,6 +163,22 @@ public class PurchaseOrderDao extends BaseDao<PurchaseOrderDo, PurchaseOrderDto>
 		System.out.println(e.getMessage());
 	}
 		return null;
+	}
+
+	public List<PurchaseOrderDto> searchPurchaseOrder(String invoiceNum, String supplierName) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PurchaseOrderDo> criteriaQuery = cb.createQuery(PurchaseOrderDo.class);
+		Root<PurchaseOrderDo> root = criteriaQuery.from(PurchaseOrderDo.class);	
+		if(!ServicesUtil.isEmpty(invoiceNum)){
+			criteriaQuery.where(cb.like(root.<String>get("invoiceNumber"),"%"+invoiceNum+"%"));
+		}else if(!ServicesUtil.isEmpty(supplierName)){
+			criteriaQuery.where(cb.like(root.<String>get("supplierName"),"%"+supplierName+"%"));
+		}
+//		List<Order> orderList = new ArrayList();
+//		orderList.add(cb.desc(root.get("date")));
+//		criteriaQuery.orderBy(orderList);
+		TypedQuery<PurchaseOrderDo> query = entityManager.createQuery(criteriaQuery);
+		return exportDtoList(query.getResultList());
 	}
 
 }
