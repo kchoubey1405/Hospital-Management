@@ -5,7 +5,6 @@ package com.myproject.dao;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,19 +18,18 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.myproject.dto.AppointmentDto;
-import com.myproject.dto.BillDetailsDto;
-import com.myproject.dto.BillingDto;
-import com.myproject.dto.PharmacyMedicineDto;
-import com.myproject.entity.AppointmentDo;
-import com.myproject.entity.BillDetailsDo;
-import com.myproject.entity.BillMap;
-import com.myproject.utill.ServicesUtil;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.myproject.dto.BillDetailsDto;
+import com.myproject.dto.BillingDto;
+import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.entity.BillDetailsDo;
+import com.myproject.entity.BillMap;
+import com.myproject.utill.ServicesUtil;
 
 /**
  * @author Kamlesh.Choubey
@@ -63,6 +61,9 @@ public class BillingDao {
         entity.setTotalCost(fromDto.getTotalCost());
         entity.setTotalDiscount(fromDto.getTotalDiscount());
         entity.setTotalGST(fromDto.getTotalGST());
+        entity.setName(fromDto.getName());
+        entity.setAge(fromDto.getAge());
+        entity.setGender(fromDto.getGender());
         List<BillDetailsDo> billDetailList = new ArrayList<>();
         fromDto.getBillDetailList().stream().forEach(billDetailsDto -> {
                                                          BillDetailsDo billDetailsDo = new BillDetailsDo();
@@ -97,6 +98,9 @@ public class BillingDao {
         dto.setTotalCost(entity.getTotalCost());
         dto.setTotalDiscount(entity.getTotalDiscount());
         dto.setTotalGST(entity.getTotalGST());
+        dto.setName(entity.getName());
+        dto.setAge(entity.getAge());
+        dto.setGender(entity.getGender());
         List<BillDetailsDto> billDetailList = new ArrayList<>();
         entity.getBillDetailList().stream().forEach(billDetailsDo -> {
                                                         BillDetailsDto billDetailsDto = new BillDetailsDto();

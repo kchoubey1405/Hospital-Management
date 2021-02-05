@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+
 /**
  * @author Kamlesh.Choubey
  *
@@ -21,6 +23,10 @@ public class BillingDto {
 	private BigDecimal totalCost;
 	private BigDecimal totalGST;
 	private BigDecimal totalDiscount;
+	private String name;
+	private String age;
+	private String gender;
+
 	private List<BillDetailsDto> billDetailList;
 
 	public Integer getBillId() {
@@ -102,4 +108,30 @@ public class BillingDto {
 	public void setTotalDiscount(BigDecimal totalDiscount) {
 		this.totalDiscount = totalDiscount;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
 }

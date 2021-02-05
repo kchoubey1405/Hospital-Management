@@ -48,6 +48,15 @@ public class BillMap {
 	@Column(name="PATIENT_ID" , length = 100)
 	private String patientId;
 	
+	@Column(name="PATIENT_NAME" , length = 100)
+	private String name;
+	
+	@Column(name="PATIENT_AGE" , length = 100)
+	private String age;
+	
+	@Column(name="PATIENT_GENDER" , length = 100)
+	private String gender;
+	
 	@Column(name="TOTAL_COST")
 	private BigDecimal totalCost;
 
@@ -141,4 +150,29 @@ public class BillMap {
 	public void setTotalDiscount(BigDecimal totalDiscount) {
 		this.totalDiscount = totalDiscount;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 }
