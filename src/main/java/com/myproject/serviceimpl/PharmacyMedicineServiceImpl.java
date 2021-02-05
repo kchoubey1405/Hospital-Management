@@ -3,6 +3,7 @@
  */
 package com.myproject.serviceimpl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.myproject.dao.SupplierDao;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.myproject.dao.PharmacyMedicineDao;
 import com.myproject.dao.PurchaseOrderDao;
 import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.dto.PurchaseOrderDetailsDto;
 import com.myproject.dto.PurchaseOrderDto;
 import com.myproject.service.PharmacyMedicineService;
 
@@ -21,7 +23,7 @@ import com.myproject.service.PharmacyMedicineService;
  *
  */
 @Service
-public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
+public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 
 	@Autowired
 	PharmacyMedicineDao pharmacyMedicineDao;
@@ -56,6 +58,7 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 	public PharmacyMedicineDto getMedicineDetails(Integer medicineId) {
 		return pharmacyMedicineDao.getMedicineDetails(medicineId);
 	}
+
 	@Override
 	public List<PharmacyMedicineDto> getMedicineList() {
 		return pharmacyMedicineDao.getMedicineList();
@@ -63,6 +66,16 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService{
 
 	@Override
 	public String saveOrUpdatePurchaseOrder(PurchaseOrderDto dto) {
+		if (dto.getStatus()!= null && dto.getStatus().equalsIgnoreCase("delivered")) {
+			List<PurchaseOrderDetailsDto> purchaseOrderDetailsDtoList = dto.getProductDetails();
+			for (PurchaseOrderDetailsDto purchaseOrderDetailsDto : purchaseOrderDetailsDtoList) {
+				PharmacyMedicineDto pharmacyMedicineDto = pharmacyMedicineDao.getMedicineDetails(purchaseOrderDetailsDto.getMedicineId());
+				pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().intValue() + purchaseOrderDetailsDto.getQuantity()));
+				pharmacyMedicineDto.setAvailability("IN STOCK");
+				pharmacyMedicineDao.saveOrUpdateMedicine(pharmacyMedicineDto);
+			}
+		}
+
 		return purchaseOrderDao.saveOrUpdatePurchaseOrder(dto);
 	}
 
