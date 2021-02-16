@@ -59,7 +59,7 @@ public class AppointmentDo implements BaseDo{
 	@Column(name = "STATUS", length = 100)
 	private String status;
 	
-	@Column(name="TIME_SLOT", length=20)
+	@Column(name="TIME_SLOT", length=40)
 	private String timeSlot;
 	
 	public String getTimeSlot() {

@@ -47,7 +47,8 @@ public class DoctorDo implements BaseDo {
 	private BigDecimal consulationCharge;
 	@Column(name = "DESIGNATION", length = 50)
 	private String designation;
-
+	@Column(name = "AVAILABILITY", length = 50)
+	private String availability;
 	public String getEmpId() {
 		return empId;
 	}
@@ -118,6 +119,14 @@ public class DoctorDo implements BaseDo {
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
 	}
 
 	@Override

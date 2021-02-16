@@ -22,6 +22,7 @@ public class DoctorDto extends BaseDto{
 	private String highestQualification;
 	private BigDecimal consulationCharge;
 	private String designation;
+	private String availability;
 	public String getEmpId() {
 		return empId;
 	}
@@ -77,6 +78,15 @@ public class DoctorDto extends BaseDto{
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
+
 	@Override
 	public Boolean getValidForUsage() {
 		// TODO Auto-generated method stub

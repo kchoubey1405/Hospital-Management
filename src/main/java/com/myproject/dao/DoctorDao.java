@@ -43,6 +43,7 @@ public class DoctorDao extends BaseDao<DoctorDo, DoctorDto> {
 		entity.setExperience(fromDto.getExperience());
 		entity.setHighestQualification(fromDto.getHighestQualification());
 		entity.setSpeciality(fromDto.getSpeciality());
+		entity.setAvailability(fromDto.getAvailability());
 		return entity;
 	}
 
@@ -55,6 +56,7 @@ public class DoctorDao extends BaseDao<DoctorDo, DoctorDto> {
 		dto.setConsulationCharge(entity.getConsulationCharge());
 		dto.setDepartment(entity.getDepartment());
 		dto.setDesignation(entity.getDesignation());
+		dto.setAvailability(entity.getAvailability());
 		dto.setExperience(entity.getExperience());
 		dto.setHighestQualification(entity.getHighestQualification());
 		dto.setSpeciality(entity.getSpeciality());
