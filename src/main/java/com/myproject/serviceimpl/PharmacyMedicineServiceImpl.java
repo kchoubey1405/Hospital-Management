@@ -6,16 +6,11 @@ package com.myproject.serviceimpl;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.myproject.dao.SupplierDao;
-import com.myproject.dto.SupplierDto;
+import com.myproject.dao.*;
+import com.myproject.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.dao.PharmacyMedicineDao;
-import com.myproject.dao.PurchaseOrderDao;
-import com.myproject.dto.PharmacyMedicineDto;
-import com.myproject.dto.PurchaseOrderDetailsDto;
-import com.myproject.dto.PurchaseOrderDto;
 import com.myproject.service.PharmacyMedicineService;
 
 /**
@@ -30,6 +25,12 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 
 	@Autowired
 	SupplierDao supplierDao;
+
+	@Autowired
+	ItemCategoryDao itemCategoryDao;
+
+	@Autowired
+	ItemUnitDao itemUnitDao;
 
 	@Autowired
 	PurchaseOrderDao purchaseOrderDao;
@@ -97,6 +98,25 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 	@Override
 	public List<PharmacyMedicineDto> getMedicineListByName(String medicineName) {
 		return pharmacyMedicineDao.getMedicineListByName(medicineName);
+	}
+
+	@Override
+	public ResponseDto saveOrUpdateItemCategory(ItemCategoryDto dto) {
+		 return itemCategoryDao.saveOrUpdate(dto);
+	}
+	@Override
+	public List<ItemCategoryDto> getAllItemCategories() {
+		return itemCategoryDao.getAllItemCategories();
+	}
+
+	@Override
+	public ResponseDto saveOrUpdateItemUnit(ItemUnitDto dto) {
+		return itemUnitDao.saveOrUpdate(dto);
+	}
+
+	@Override
+	public List<ItemUnitDto> getAllItemUnits() {
+		return itemUnitDao.getAllItemUnits();
 	}
 
 	@Override

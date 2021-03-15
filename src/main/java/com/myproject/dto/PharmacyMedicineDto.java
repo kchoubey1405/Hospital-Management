@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.myproject.persistent.util.BaseDto;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Kamlesh.Choubey
@@ -85,12 +86,15 @@ public class PharmacyMedicineDto extends BaseDto{
 	public void setTriggerValue(String triggerValue) {
 		this.triggerValue = triggerValue;
 	}
+
 	public String getImage() {
 		return image;
 	}
+
 	public void setImage(String image) {
 		this.image = image;
 	}
+
 	public BigDecimal getSalePrice() {
 		return salePrice;
 	}

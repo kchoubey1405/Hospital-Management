@@ -3,14 +3,11 @@
  */
 package com.myproject.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.myproject.persistent.util.BaseDo;
+
+import java.util.Date;
 
 /**
  * @author Kamlesh.Choubey
@@ -63,7 +60,9 @@ public class PatientDo implements BaseDo {
 
 	@Column(name = "VISIT_TYPE", length = 30)
 	private String visitType;
-
+	@Column(name="CREATED_AT")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
 	public String getPatientName() {
 		return patientName;
 	}
@@ -174,6 +173,14 @@ public class PatientDo implements BaseDo {
 
 	public void setPatientid(int patientid) {
 		this.patientid = patientid;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override

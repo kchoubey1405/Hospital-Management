@@ -5,12 +5,10 @@ package com.myproject.controller;
 
 import java.util.List;
 
-import com.myproject.dto.SupplierDto;
+import com.myproject.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.myproject.dto.PharmacyMedicineDto;
-import com.myproject.dto.PurchaseOrderDto;
 import com.myproject.service.PharmacyMedicineService;
 
 /**
@@ -66,10 +64,32 @@ public class PharmacyController {
 		return pharmacyMedicineService.deletePurchaseOrder(dto);
 	}
 
+	@PostMapping("/saveItemCategory")
+	public ResponseDto saveItemCategory(@RequestBody ItemCategoryDto dto) {
+		return pharmacyMedicineService.saveOrUpdateItemCategory(dto);
+	}
+
+	@PostMapping("/saveItemUnit")
+	public ResponseDto saveItemCategory(@RequestBody ItemUnitDto dto) {
+		return pharmacyMedicineService.saveOrUpdateItemUnit(dto);
+	}
+
+	@GetMapping("/getAllItemCategories")
+	public List<ItemCategoryDto> getAllItemCategories() {
+		return pharmacyMedicineService.getAllItemCategories();
+	}
+
+	@GetMapping("/getAllItemUnits")
+	public List<ItemUnitDto> getAllItemUnits() {
+		return pharmacyMedicineService.getAllItemUnits();
+	}
+
 	@GetMapping("/getPurchaseOrderDetails")
 	public PurchaseOrderDto getPurchaseOrderDetails(@RequestParam(value="purchaseOrderId") Integer purchaseOrderId) {
 		return pharmacyMedicineService.getPurchaseOrderDetails(purchaseOrderId);
 	}
+
+
 
 	@GetMapping("/getPurchaseOrderList")
 	public List<PurchaseOrderDto> getPurchaseOrderList() {

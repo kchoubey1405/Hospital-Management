@@ -56,7 +56,7 @@ public class BillingDao {
         entity.setBillType(fromDto.getBillType());
         entity.setPaymentMode(fromDto.getPaymentMode());
         entity.setPaymentStatus(fromDto.getPaymentStatus());
-        entity.setCreatedAt(new Date());
+        entity.setCreatedAt(fromDto.getCreatedAt());
         entity.setPatientId(fromDto.getPatientId());
         entity.setTotalCost(fromDto.getTotalCost());
         entity.setTotalDiscount(fromDto.getTotalDiscount());
@@ -152,7 +152,7 @@ public class BillingDao {
         return hm;
     }
 
-    public List<BillingDto> fetchBillDtails(Integer patientId, String billId) {
+    public List<BillingDto> fetchBillDtails(Integer patientId, String billId, String name) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<BillMap> criteria = builder.createQuery(BillMap.class);
         Root<BillMap> d = criteria.from(BillMap.class);
@@ -160,6 +160,8 @@ public class BillingDao {
             criteria.where(builder.equal(d.get("patientId"), patientId));
         } else if (!ServicesUtil.isEmpty(billId)) {
             criteria.where(builder.equal(d.get("billId"), billId));
+        } else if (!ServicesUtil.isEmpty(name)) {
+            criteria.where(builder.like(d.<String>get("name"),"%"+name+"%"));
         }
         TypedQuery<BillMap> q = entityManager.createQuery(criteria);
         return exportDtoList(q.getResultList());

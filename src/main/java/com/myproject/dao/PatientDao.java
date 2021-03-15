@@ -53,6 +53,7 @@ public class PatientDao {
         entity.setReferedTo(fromDto.getReferedTo());
         entity.setDiseaseDesc(fromDto.getDiseaseDesc());
         entity.setVisitType(fromDto.getVisitType());
+        entity.setCreatedAt(fromDto.getCreatedAt());
         if(!ServicesUtil.isEmpty(fromDto.getPatientId())){
         	 entity.setPatientid(fromDto.getPatientId());
         }
@@ -76,6 +77,7 @@ public class PatientDao {
         dto.setReferedTo(entity.getReferedTo());
         dto.setDiseaseDesc(entity.getDiseaseDesc());
         dto.setVisitType(entity.getVisitType());
+        dto.setCreatedAt(entity.getCreatedAt());
         return dto;
     }
 
