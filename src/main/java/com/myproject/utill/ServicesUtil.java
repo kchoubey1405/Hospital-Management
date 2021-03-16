@@ -1,18 +1,17 @@
 package com.myproject.utill;
 
-import java.lang.reflect.Field;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Collection;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import java.util.Random;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.imageio.ImageIO;
+
+import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 
 
 /**
@@ -79,4 +78,34 @@ public class ServicesUtil {
 		return false;
 	}
 
+	public static String generateEAN13BarcodeImage(String barcodeText) {
+	   try{
+		EAN13Bean barcodeGenerator = new EAN13Bean();
+	    BitmapCanvasProvider canvas = 
+	      new BitmapCanvasProvider(160, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+	    barcodeGenerator.generateBarcode(canvas, barcodeText);
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    ImageIO.write(canvas.getBufferedImage(), "jpg", baos);
+	    baos.flush();
+	    byte[] imageInByte = baos.toByteArray();
+
+
+	    String encoded = Base64.getEncoder().encodeToString("Hello".getBytes());
+	    return encoded;
+	   }catch(Exception e){
+		   System.err.println(e.getMessage());
+	   }
+	   return null;
+	}
+	
+	public static long generateRandom(int length) {
+	    Random random = new Random();
+	    char[] digits = new char[length];
+	    digits[0] = (char) (random.nextInt(9) + '1');
+	    for (int i = 1; i < length; i++) {
+	        digits[i] = (char) (random.nextInt(10) + '0');
+	    }
+	    return Long.parseLong(new String(digits));
+	}
 }

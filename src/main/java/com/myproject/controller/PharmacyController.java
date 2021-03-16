@@ -3,6 +3,7 @@
  */
 package com.myproject.controller;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import com.myproject.dto.*;
@@ -104,5 +105,10 @@ public class PharmacyController {
 	@GetMapping("/searchPurchaseOrder")
 	public List<PurchaseOrderDto> searchPurchaseOrder(@RequestParam(value="invoiceNum") String invoiceNum , @RequestParam(value="supplierName") String supplierName) {
 		return pharmacyMedicineService.searchPurchaseOrder(invoiceNum , supplierName);
+	}
+	
+	@GetMapping("/getMedicineDetailsByBarcodeNumber")
+	public PharmacyMedicineDto getMedicineDetailsByBarcodeNumber(@RequestParam(value = "barcodeNum") String barcodeNum){
+		return pharmacyMedicineService.getMedicineDetailsByBarcodeNumber(barcodeNum);
 	}
 }

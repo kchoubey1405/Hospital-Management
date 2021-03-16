@@ -32,4 +32,5 @@ public interface PharmacyMedicineService {
 	public PurchaseOrderDto getPurchaseOrderDetails(Integer purchaseOrderId);
 	public List<PurchaseOrderDto> getPurchaseOrderList();
 	public List<PurchaseOrderDto> searchPurchaseOrder(String invoiceNum, String supplierName);
+	public PharmacyMedicineDto getMedicineDetailsByBarcodeNumber(String barcodeNum);
 }

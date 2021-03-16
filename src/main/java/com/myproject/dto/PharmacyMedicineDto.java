@@ -28,10 +28,12 @@ public class PharmacyMedicineDto extends BaseDto{
 	private String image;
 	private BigDecimal salePrice;
 	private BigDecimal supplierPrice;
+	private String barcode;
 	private BigDecimal tax;
 	private String supplierName;
 	private String availability;
 	private BigDecimal stockQuantity;
+	private String barcodeNum;
 	public String getMedicineName() {
 		return medicineName;
 	}
@@ -146,13 +148,27 @@ public class PharmacyMedicineDto extends BaseDto{
 	public void setMedicineId(Integer medicineId) {
 		this.medicineId = medicineId;
 	}
+	
+	public String getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+	public String getBarcodeNum() {
+		return barcodeNum;
+	}
+	public void setBarcodeNum(String barcodeNum) {
+		this.barcodeNum = barcodeNum;
+	}
 	@Override
 	public String toString() {
 		return "PharmacyMedicineDto [medicineId=" + medicineId + ", medicineName=" + medicineName + ", genericName="
 				+ genericName + ", boxSize=" + boxSize + ", expDate=" + expDate + ", medicineShelf=" + medicineShelf
 				+ ", details=" + details + ", category=" + category + ", unit=" + unit + ", triggerValue="
 				+ triggerValue + ", image=" + image + ", salePrice=" + salePrice + ", supplierPrice=" + supplierPrice
-				+ ", tax=" + tax + ", supplierName=" + supplierName + ", availability=" + availability + "]";
+				+ ", barcode=" + barcode + ", tax=" + tax + ", supplierName=" + supplierName + ", availability="
+				+ availability + ", stockQuantity=" + stockQuantity + ", barcodeNum=" + barcodeNum + "]";
 	}
 	
 }

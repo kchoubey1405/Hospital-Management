@@ -65,7 +65,23 @@ public class PharmacyMedicineDo implements BaseDo {
 	private String availability;
 	@Column(name="STOCK_QUANTITY")
 	private BigDecimal stockQuantity;
-
+	@Column(name="BARCODE_NUM" , length =100)
+	private String barcodeNum;
+	@Lob
+	@Column(name="BARCODE_IMG")
+	private String barcode;
+	public String getBarcodeNum() {
+		return barcodeNum;
+	}
+	public void setBarcodeNum(String barcodeNum) {
+		this.barcodeNum = barcodeNum;
+	}
+	public String getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
 	public String getMedicineName() {
 		return medicineName;
 	}

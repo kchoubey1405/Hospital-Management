@@ -61,6 +61,8 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		entity.setTriggerValue(fromDto.getTriggerValue());
 		entity.setUnit(fromDto.getUnit());
 		entity.setStockQuantity(fromDto.getStockQuantity());
+		entity.setBarcode(fromDto.getBarcode());
+		entity.setBarcodeNum(fromDto.getBarcodeNum());
 		return entity;
 	}
 
@@ -84,6 +86,8 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		dto.setTriggerValue(entity.getTriggerValue());
 		dto.setUnit(entity.getUnit());
 		dto.setStockQuantity(entity.getStockQuantity());
+		dto.setBarcode(entity.getBarcode());
+		dto.setBarcodeNum(entity.getBarcodeNum());
 		return dto;
 	}
 	
@@ -150,6 +154,15 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		TypedQuery<PharmacyMedicineDo> query = entityManager.createQuery(criteriaQuery);
 		return exportDtoList(query.getResultList());
 		
+	}
+
+	public PharmacyMedicineDto getMedicineDetailsByBarcodeNumber(String barcodeNum) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PharmacyMedicineDo> criteriaQuery = cb.createQuery(PharmacyMedicineDo.class);
+		Root<PharmacyMedicineDo> root = criteriaQuery.from(PharmacyMedicineDo.class);
+		criteriaQuery.where(cb.equal(root.get("barcodeNum"), barcodeNum));
+		TypedQuery<PharmacyMedicineDo> query = entityManager.createQuery(criteriaQuery);
+		return exportDto(query.getSingleResult());
 	}
 
 }

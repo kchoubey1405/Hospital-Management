@@ -6,12 +6,23 @@ package com.myproject.serviceimpl;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.myproject.dao.*;
-import com.myproject.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myproject.dao.ItemCategoryDao;
+import com.myproject.dao.ItemUnitDao;
+import com.myproject.dao.PharmacyMedicineDao;
+import com.myproject.dao.PurchaseOrderDao;
+import com.myproject.dao.SupplierDao;
+import com.myproject.dto.ItemCategoryDto;
+import com.myproject.dto.ItemUnitDto;
+import com.myproject.dto.PharmacyMedicineDto;
+import com.myproject.dto.PurchaseOrderDetailsDto;
+import com.myproject.dto.PurchaseOrderDto;
+import com.myproject.dto.ResponseDto;
+import com.myproject.dto.SupplierDto;
 import com.myproject.service.PharmacyMedicineService;
+import com.myproject.utill.ServicesUtil;
 
 /**
  * @author Kamlesh.Choubey
@@ -37,7 +48,12 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 
 	@Override
 	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
+		String barcodeNumber = String.valueOf(ServicesUtil.generateRandom(12));
+		String bufferedImage = ServicesUtil.generateEAN13BarcodeImage(barcodeNumber);
+		dto.setBarcode(bufferedImage);
+		dto.setBarcodeNum(barcodeNumber);
 		return pharmacyMedicineDao.saveOrUpdateMedicine(dto);
+		
 	}
 
 	@Override
@@ -122,6 +138,11 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 	@Override
 	public List<PurchaseOrderDto> searchPurchaseOrder(String invoiceNum, String supplierName) {
 		return purchaseOrderDao.searchPurchaseOrder(invoiceNum, supplierName);
+	}
+
+	@Override
+	public PharmacyMedicineDto getMedicineDetailsByBarcodeNumber(String barcodeNum) {
+		return pharmacyMedicineDao.getMedicineDetailsByBarcodeNumber(barcodeNum);
 	}
 
 }
