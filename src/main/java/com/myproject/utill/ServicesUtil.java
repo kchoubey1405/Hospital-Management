@@ -14,9 +14,12 @@ import java.util.Random;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BarcodeEAN;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.krysalis.barcode4j.impl.code128.Code128Bean;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 
 /**
  * Contains utility functions to be used by Services
@@ -85,7 +88,7 @@ public class ServicesUtil {
 	public static HashMap<String , String> generateEAN13BarcodeImage(String barcodeText) {
 		HashMap<String , String> response = new HashMap<>();
 		Document document = new Document();
-		String url = "C:\\Barcodes\\"+barcodeText+".pdf";
+		String url = "C:\\Barcodes\\"+barcodeText+".jpeg";
 		response.put("FilePath" , url);
 		try{
 			new File("C:\\Barcodes").mkdir();
@@ -117,5 +120,49 @@ public class ServicesUtil {
 	        digits[i] = (char) (random.nextInt(10) + '0');
 	    }
 	    return Long.parseLong(new String(digits));
+	}
+
+	public static HashMap<String , String> generateBarcodeInPng(String barcodeText){
+		HashMap<String , String> response = new HashMap<>();
+		String url = "C:\\Barcodes\\"+barcodeText+".jpeg";
+		response.put("FilePath" , url);
+		try {
+			new File("C:\\Barcodes").mkdir();
+			Code128Bean code128 = new Code128Bean();
+			code128.setHeight(15f);
+			code128.setModuleWidth(0.3);
+			code128.setQuietZone(10);
+			code128.doQuietZone(true);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			BitmapCanvasProvider canvas = new BitmapCanvasProvider(baos, "image/x-png", 300, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+			code128.generateBarcode(canvas, barcodeText);
+			canvas.finish();
+
+//write to png file
+			FileOutputStream fos = new FileOutputStream(url);
+			fos.write(baos.toByteArray());
+			fos.flush();
+			fos.close();
+
+//write to pdf
+			Image png = Image.getInstance(baos.toByteArray());
+			png.setAbsolutePosition(400, 685);
+			png.scalePercent(25);
+
+			Document document = new Document(new Rectangle(595, 842));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("barcodes.pdf"));
+			document.open();
+			document.add(png);
+			document.close();
+
+			writer.close();
+			String img = Base64.getEncoder().encodeToString(Files.readAllBytes(new File(url).toPath()));
+			response.put("Barcode" , img);
+			System.out.println(img);
+		}catch (Exception e){
+System.out.println(e.getMessage());
+		}
+		return response;
 	}
 }

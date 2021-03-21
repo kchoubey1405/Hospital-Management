@@ -53,14 +53,14 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 	@Override
 	public HashMap<String , Object> saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
 		HashMap<String , Object> response = new HashMap<>();
-		int itemId =  pharmacyMedicineDao.saveOrUpdateMedicine(dto);
-		response.put("ItemId" , itemId);
-		response.put("ResponseMessage" , "success");
 		String barcodeNumber = String.valueOf(ServicesUtil.generateRandom(13));
-		HashMap<String , String> barcodeDetails = ServicesUtil.generateEAN13BarcodeImage(barcodeNumber);
+		HashMap<String , String> barcodeDetails = ServicesUtil.generateBarcodeInPng(barcodeNumber);
 		response.put("BarcodeImage" , barcodeDetails.get("Barcode"));
 		dto.setBarcode(barcodeDetails.get("FilePath"));
 		dto.setBarcodeNum(barcodeNumber);
+		int itemId =  pharmacyMedicineDao.saveOrUpdateMedicine(dto);
+		response.put("ItemId" , itemId);
+		response.put("ResponseMessage" , "success");
 		return response;
 		
 	}
@@ -82,7 +82,16 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 
 	@Override
 	public PharmacyMedicineDto getMedicineDetails(Integer medicineId) {
-		return pharmacyMedicineDao.getMedicineDetails(medicineId);
+		try {
+			PharmacyMedicineDto dto = pharmacyMedicineDao.getMedicineDetails(medicineId);
+			String url = dto.getBarcode();
+			String img = Base64.getEncoder().encodeToString(Files.readAllBytes(new File(url).toPath()));
+			dto.setBarcode(img);
+			return dto;
+		}catch(Exception e){
+
+		}
+		return null;
 	}
 
 	@Override
@@ -155,7 +164,7 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 			PharmacyMedicineDto dto = pharmacyMedicineDao.getMedicineDetailsByBarcodeNumber(barcodeNum);
 			String url = dto.getBarcode();
 			String img = Base64.getEncoder().encodeToString(Files.readAllBytes(new File(url).toPath()));
-			dto.setDetails(img);
+			dto.setBarcode(img);
 		}catch(Exception e){
 
 		}
