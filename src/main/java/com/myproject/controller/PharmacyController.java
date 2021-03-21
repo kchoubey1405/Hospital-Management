@@ -4,6 +4,7 @@
 package com.myproject.controller;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.List;
 
 import com.myproject.dto.*;
@@ -25,7 +26,7 @@ public class PharmacyController {
 	PharmacyMedicineService pharmacyMedicineService;
 	
 	@PostMapping("/saveOrUpdatePharmacyMedicine")
-	public String saveOrUpdatePharmacyMedicine(@RequestBody PharmacyMedicineDto dto) {
+	public HashMap<String , Object> saveOrUpdatePharmacyMedicine(@RequestBody PharmacyMedicineDto dto) {
 		return pharmacyMedicineService.saveOrUpdatePharmacyMedicine(dto);
 	}
 

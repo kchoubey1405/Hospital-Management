@@ -91,11 +91,12 @@ public class PharmacyMedicineDao extends BaseDao<PharmacyMedicineDo, PharmacyMed
 		return dto;
 	}
 	
-	public String saveOrUpdateMedicine(PharmacyMedicineDto dto){
-		String resonse="failure";
+	public int saveOrUpdateMedicine(PharmacyMedicineDto dto){
+		int resonse=0;
 		try{
-			this.getSession().saveOrUpdate(importDto(dto));
-			resonse="success";
+			PharmacyMedicineDo pharmacyMedicineDo = importDto(dto);
+			this.getSession().saveOrUpdate(pharmacyMedicineDo);
+			resonse= pharmacyMedicineDo.getMedicineId();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			e.printStackTrace();

@@ -3,6 +3,7 @@
  */
 package com.myproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.myproject.dto.*;
@@ -15,7 +16,7 @@ public interface PharmacyMedicineService {
 	//Pharmacy medicines CRUD
 	public PharmacyMedicineDto getMedicineDetails(Integer medicineId);
 	public List<PharmacyMedicineDto> getMedicineList();
-	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto);
+	public HashMap<String , Object> saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto);
 	public List<SupplierDto> getSupplierList();
 	public String saveOrUpdateSupplier(SupplierDto dto);
 	public String deleteMedicineRecord(String medicineId);

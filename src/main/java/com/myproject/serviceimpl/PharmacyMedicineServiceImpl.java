@@ -3,7 +3,11 @@
  */
 package com.myproject.serviceimpl;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +51,17 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 	PurchaseOrderDao purchaseOrderDao;
 
 	@Override
-	public String saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
-		String barcodeNumber = String.valueOf(ServicesUtil.generateRandom(12));
-		String bufferedImage = ServicesUtil.generateEAN13BarcodeImage(barcodeNumber);
-		dto.setBarcode(bufferedImage);
+	public HashMap<String , Object> saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
+		HashMap<String , Object> response = new HashMap<>();
+		int itemId =  pharmacyMedicineDao.saveOrUpdateMedicine(dto);
+		response.put("ItemId" , itemId);
+		response.put("ResponseMessage" , "success");
+		String barcodeNumber = String.valueOf(ServicesUtil.generateRandom(13));
+		HashMap<String , String> barcodeDetails = ServicesUtil.generateEAN13BarcodeImage(barcodeNumber);
+		response.put("BarcodeImage" , barcodeDetails.get("Barcode"));
+		dto.setBarcode(barcodeDetails.get("FilePath"));
 		dto.setBarcodeNum(barcodeNumber);
-		return pharmacyMedicineDao.saveOrUpdateMedicine(dto);
+		return response;
 		
 	}
 
@@ -142,7 +151,15 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 
 	@Override
 	public PharmacyMedicineDto getMedicineDetailsByBarcodeNumber(String barcodeNum) {
-		return pharmacyMedicineDao.getMedicineDetailsByBarcodeNumber(barcodeNum);
+		try {
+			PharmacyMedicineDto dto = pharmacyMedicineDao.getMedicineDetailsByBarcodeNumber(barcodeNum);
+			String url = dto.getBarcode();
+			String img = Base64.getEncoder().encodeToString(Files.readAllBytes(new File(url).toPath()));
+			dto.setDetails(img);
+		}catch(Exception e){
+
+		}
+		return null;
 	}
 
 }
