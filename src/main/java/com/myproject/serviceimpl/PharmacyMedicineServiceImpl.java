@@ -61,6 +61,7 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 		int itemId =  pharmacyMedicineDao.saveOrUpdateMedicine(dto);
 		response.put("ItemId" , itemId);
 		response.put("ResponseMessage" , "success");
+		response.put("BarcodeNumber", barcodeNumber);
 		return response;
 		
 	}
