@@ -18,6 +18,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import java.util.List;
 
 @Repository
@@ -64,7 +66,7 @@ public class BrandDao extends BaseDao<BrandDo, BrandDto> {
         TypedQuery<BrandDo> q = entityManager.createQuery(query);
         return exportDtoList(q.getResultList());
     }
-    public ResponseDto saveBrandDetails(BrandDto brandDto) {
+    public ResponseDto saveBrandDetails(BrandDto brandDto, Path root) {
         ResponseDto responseDto = new ResponseDto();
         this.getSession().saveOrUpdate(importDto(brandDto));
         responseDto.setResponseMessage("Saved successfully");

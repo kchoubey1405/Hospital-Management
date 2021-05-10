@@ -21,6 +21,7 @@ public class BillDetailsDto {
 	private String concessionType;
 	private BigDecimal quantity;
 	private String purchaseType;
+	private String unit;
 
 	public Integer getId() {
 		return id;
@@ -108,5 +109,13 @@ public class BillDetailsDto {
 
 	public void setGstPercentage(BigDecimal gstPercentage) {
 		this.gstPercentage = gstPercentage;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 }

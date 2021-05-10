@@ -56,6 +56,9 @@ public class BillDetailsDo {
 	@Column(name="PURCHASE_TYPE" , length=100)
 	private String purchaseType;
 
+	@Column(name="UNIT" , length=100)
+	private String unit;
+
 	public Integer getId() {
 		return id;
 	}
@@ -142,5 +145,13 @@ public class BillDetailsDo {
 
 	public void setGstPercentage(BigDecimal gstPercentage) {
 		this.gstPercentage = gstPercentage;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 }

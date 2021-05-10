@@ -1,6 +1,7 @@
 package com.myproject.dto;
 
 import com.myproject.persistent.util.BaseDto;
+import org.springframework.web.multipart.MultipartFile;
 
 public class BrandDto extends BaseDto {
     private int id;
@@ -12,7 +13,7 @@ public class BrandDto extends BaseDto {
     private String gstin;
     private String regNo;
     private String contact;
-
+    private MultipartFile file;
     public int getId() {
         return id;
     }
@@ -83,6 +84,14 @@ public class BrandDto extends BaseDto {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     @Override
