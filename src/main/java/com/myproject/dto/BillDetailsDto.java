@@ -22,6 +22,7 @@ public class BillDetailsDto {
 	private BigDecimal quantity;
 	private String purchaseType;
 	private String unit;
+	private BigDecimal actualQuantity;
 
 	public Integer getId() {
 		return id;
@@ -117,5 +118,13 @@ public class BillDetailsDto {
 
 	public void setUnit(String unit) {
 		this.unit = unit;
+	}
+
+	public BigDecimal getActualQuantity() {
+		return actualQuantity;
+	}
+
+	public void setActualQuantity(BigDecimal actualQuantity) {
+		this.actualQuantity = actualQuantity;
 	}
 }

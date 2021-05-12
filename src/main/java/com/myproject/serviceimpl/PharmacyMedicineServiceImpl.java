@@ -6,6 +6,8 @@ package com.myproject.serviceimpl;
 import java.io.File;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -53,11 +55,18 @@ public class PharmacyMedicineServiceImpl implements PharmacyMedicineService {
 	@Override
 	public HashMap<String , Object> saveOrUpdatePharmacyMedicine(PharmacyMedicineDto dto) {
 		HashMap<String , Object> response = new HashMap<>();
-		String barcodeNumber = String.valueOf(ServicesUtil.generateRandom(13));
-		HashMap<String , String> barcodeDetails = ServicesUtil.generateBarcodeInPng(barcodeNumber);
-		response.put("BarcodeImage" , barcodeDetails.get("Barcode"));
-		dto.setBarcode(barcodeDetails.get("FilePath"));
-		dto.setBarcodeNum(barcodeNumber);
+        String barcodeNumber = dto.getBarcodeNum();
+		String url = "C:\\Barcodes\\"+ dto.getBarcodeNum() +".jpeg";
+		File f = new File(url);
+		dto.setBarcode(url);
+		if(!f.exists()) {
+			barcodeNumber = String.valueOf(ServicesUtil.generateRandom(13));
+			HashMap<String , String> barcodeDetails = ServicesUtil.generateBarcodeInPng(barcodeNumber);
+			response.put("BarcodeImage" , barcodeDetails.get("Barcode"));
+			dto.setBarcode(barcodeDetails.get("FilePath"));
+			dto.setBarcodeNum(barcodeNumber);
+		}
+
 		int itemId =  pharmacyMedicineDao.saveOrUpdateMedicine(dto);
 		response.put("ItemId" , itemId);
 		response.put("ResponseMessage" , "success");

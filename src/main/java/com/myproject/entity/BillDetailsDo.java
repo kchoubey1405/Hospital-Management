@@ -1,16 +1,10 @@
 /**
- * 
+ *
  */
 package com.myproject.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @author Kamlesh.Choubey
@@ -18,140 +12,141 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="BILL_DETAILS")
+@Table(name = "BILL_DETAILS")
 public class BillDetailsDo {
-	
-	@Id
-	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.AUTO) 
-	private Integer id;
-	
-	@Column(name="ITEM_NAME" , length=200)
-	private String itemName;
-	
-	@Column(name="ITEM_ID" , length=100)
-	private String itemId;
-	
-	@Column(name="BILL_MAP_ID" , length=100)
-	private String billMapId;
-	
-	@Column(name="COST")
-	private BigDecimal cost;
-	
-	@Column(name="CONCESSION_PERCENTAGE")
-	private BigDecimal concessionPercentage;
 
-	@Column(name="GST_PERCENTAGE")
-	private BigDecimal gstPercentage;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	@Column(name="MRP")
-	private BigDecimal mrp;
-	
-	@Column(name="CONCESSION_TYPE" , length=100)
-	private String concessionType;
-	
-	@Column(name="QUANTITY")
-	private BigDecimal quantity;
+    @Column(name = "ITEM_NAME", length = 200)
+    private String itemName;
 
-	@Column(name="PURCHASE_TYPE" , length=100)
-	private String purchaseType;
+    @Column(name = "ITEM_ID", length = 100)
+    private String itemId;
 
-	@Column(name="UNIT" , length=100)
-	private String unit;
+    @Column(name = "BILL_MAP_ID", length = 100)
+    private String billMapId;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "COST")
+    private BigDecimal cost;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "CONCESSION_PERCENTAGE")
+    private BigDecimal concessionPercentage;
 
-	public String getItemName() {
-		return itemName;
-	}
+    @Column(name = "GST_PERCENTAGE")
+    private BigDecimal gstPercentage;
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
+    @Column(name = "MRP")
+    private BigDecimal mrp;
 
-	public String getItemId() {
-		return itemId;
-	}
+    @Column(name = "CONCESSION_TYPE", length = 100)
+    private String concessionType;
 
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
+    @Column(name = "QUANTITY")
+    private BigDecimal quantity;
 
-	public String getBillMapId() {
-		return billMapId;
-	}
+    @Column(name = "PURCHASE_TYPE", length = 100)
+    private String purchaseType;
 
-	public void setBillMapId(String billMapId) {
-		this.billMapId = billMapId;
-	}
+    @Column(name = "UNIT", length = 100)
+    private String unit;
 
-	public BigDecimal getCost() {
-		return cost;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setCost(BigDecimal cost) {
-		this.cost = cost;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public BigDecimal getConcessionPercentage() {
-		return concessionPercentage;
-	}
+    public String getItemName() {
+        return itemName;
+    }
 
-	public void setConcessionPercentage(BigDecimal concessionPercentage) {
-		this.concessionPercentage = concessionPercentage;
-	}
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 
-	public BigDecimal getMrp() {
-		return mrp;
-	}
+    public String getItemId() {
+        return itemId;
+    }
 
-	public void setMrp(BigDecimal mrp) {
-		this.mrp = mrp;
-	}
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
 
-	public String getConcessionType() {
-		return concessionType;
-	}
+    public String getBillMapId() {
+        return billMapId;
+    }
 
-	public void setConcessionType(String concessionType) {
-		this.concessionType = concessionType;
-	}
+    public void setBillMapId(String billMapId) {
+        this.billMapId = billMapId;
+    }
 
-	public BigDecimal getQuantity() {
-		return quantity;
-	}
+    public BigDecimal getCost() {
+        return cost;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
 
-	public String getPurchaseType() {
-		return purchaseType;
-	}
+    public BigDecimal getConcessionPercentage() {
+        return concessionPercentage;
+    }
 
-	public void setPurchaseType(String purchaseType) {
-		this.purchaseType = purchaseType;
-	}
+    public void setConcessionPercentage(BigDecimal concessionPercentage) {
+        this.concessionPercentage = concessionPercentage;
+    }
 
-	public BigDecimal getGstPercentage() {
-		return gstPercentage;
-	}
+    public BigDecimal getMrp() {
+        return mrp;
+    }
 
-	public void setGstPercentage(BigDecimal gstPercentage) {
-		this.gstPercentage = gstPercentage;
-	}
+    public void setMrp(BigDecimal mrp) {
+        this.mrp = mrp;
+    }
 
-	public String getUnit() {
-		return unit;
-	}
+    public String getConcessionType() {
+        return concessionType;
+    }
 
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
+    public void setConcessionType(String concessionType) {
+        this.concessionType = concessionType;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getPurchaseType() {
+        return purchaseType;
+    }
+
+    public void setPurchaseType(String purchaseType) {
+        this.purchaseType = purchaseType;
+    }
+
+    public BigDecimal getGstPercentage() {
+        return gstPercentage;
+    }
+
+    public void setGstPercentage(BigDecimal gstPercentage) {
+        this.gstPercentage = gstPercentage;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
 }

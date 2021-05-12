@@ -138,11 +138,11 @@ public class BillingDao {
             for (BillDetailsDto billDetailsDto : itemList) {
                 if (billDetailsDto.getPurchaseType().equalsIgnoreCase("pharmacy-purchase")) {
                     PharmacyMedicineDto pharmacyMedicineDto = pharmacyMedicineDao.getMedicineDetails(Integer.parseInt(billDetailsDto.getItemId()));
-                    pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().intValue() - billDetailsDto.getQuantity().intValue()));
+                    pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().floatValue() - billDetailsDto.getActualQuantity().floatValue()));
                     pharmacyMedicineDao.saveOrUpdateMedicine(pharmacyMedicineDto);
                 } else if (billDetailsDto.getPurchaseType().equalsIgnoreCase("pharmacy-return")) {
                     PharmacyMedicineDto pharmacyMedicineDto = pharmacyMedicineDao.getMedicineDetails(Integer.parseInt(billDetailsDto.getItemId()));
-                    pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().intValue() + billDetailsDto.getQuantity().intValue()));
+                    pharmacyMedicineDto.setStockQuantity(BigDecimal.valueOf(pharmacyMedicineDto.getStockQuantity().floatValue() + billDetailsDto.getActualQuantity().floatValue()));
                     pharmacyMedicineDao.saveOrUpdateMedicine(pharmacyMedicineDto);
                 }
             }
