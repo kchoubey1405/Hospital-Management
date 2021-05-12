@@ -53,6 +53,9 @@ public class BillDetailsDo {
     @Column(name = "UNIT", length = 100)
     private String unit;
 
+    @Column(name = "ACTUAL_UNIT", length = 100)
+    private String actualUnit;
+
     public Integer getId() {
         return id;
     }
@@ -149,4 +152,11 @@ public class BillDetailsDo {
         this.unit = unit;
     }
 
+    public String getActualUnit() {
+        return actualUnit;
+    }
+
+    public void setActualUnit(String actualUnit) {
+        this.actualUnit = actualUnit;
+    }
 }

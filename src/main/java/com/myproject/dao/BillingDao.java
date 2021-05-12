@@ -77,8 +77,10 @@ public class BillingDao {
                                                          billDetailsDo.setItemName(billDetailsDto.getItemName());
                                                          billDetailsDo.setMrp(billDetailsDto.getMrp());
                                                          billDetailsDo.setUnit(billDetailsDto.getUnit());
+            billDetailsDo.setActualUnit(billDetailsDto.getActualUnit());
                                                          billDetailsDo.setQuantity(billDetailsDto.getQuantity());
                                                          billDetailsDo.setPurchaseType(billDetailsDto.getPurchaseType());
+
                                                          billDetailList.add(billDetailsDo);
                                                      }
 
@@ -115,6 +117,7 @@ public class BillingDao {
                                                         billDetailsDto.setItemName(billDetailsDo.getItemName());
                                                         billDetailsDto.setMrp(billDetailsDo.getMrp());
                                                         billDetailsDto.setUnit(billDetailsDo.getUnit());
+            billDetailsDto.setActualUnit(billDetailsDo.getActualUnit());
                                                         billDetailsDto.setQuantity(billDetailsDo.getQuantity());
                                                         billDetailsDto.setPurchaseType(billDetailsDo.getPurchaseType());
                                                         billDetailList.add(billDetailsDto);
